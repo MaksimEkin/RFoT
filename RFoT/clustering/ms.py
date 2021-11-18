@@ -24,7 +24,12 @@ def ms_cluster(params):
         bandwidth = None
 
     ms = MeanShift(bandwidth=bandwidth, bin_seeding=True)
-    ms.fit(X)
+
+    try:
+        ms.fit(X)
+    except Exception:
+        raise Exception("Error when clustering!")
+
     labels = ms.labels_
     nopt = len(np.unique(labels))
     return labels, nopt

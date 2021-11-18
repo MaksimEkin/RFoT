@@ -322,7 +322,11 @@ class RFoT:
                 "max_cluster_search": self.max_cluster_search,
                 "random_state": self.random_state,
             }
-            cluster_labels, n_opt = self.cluster(params)
+            try:
+                cluster_labels, n_opt = self.cluster(params)
+            except Exception:
+                # error when clustering this component, skip
+                continue
 
             #
             # Calculate Component Quality
