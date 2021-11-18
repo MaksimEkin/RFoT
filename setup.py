@@ -22,7 +22,7 @@ setup(
     platforms = ["Linux", "Mac", "Windows"],
     include_package_data=True,
     setup_requires=[
-        'joblib', 'matplotlib', 'numpy', 'numpy-indexed',
+        'joblib', 'matplotlib', 'numpy',
         'pandas', 'scikit-learn', 'scipy', 'seaborn',
         'tqdm', 'sparse'
     ],

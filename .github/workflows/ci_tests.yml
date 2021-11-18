@@ -24,6 +24,7 @@ jobs:
         run: |
           conda info
           conda list
+          pip install numpy==1.19.2
           python setup.py install
           
       - name: Run the Unittests
