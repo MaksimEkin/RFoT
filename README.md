@@ -1,7 +1,7 @@
 # Random Forest of Tensors (RFoT) <img align="left" width="50" height="50" src="RFoT/RFoT.png">
 
 <div align="center", style="font-size: 50px">
-    <img src="https://github.com/MaksimEkin/RFoT/actions/workflows/unittests_ci.yml/badge.svg?branch=main"></img>
+    <img src="https://github.com/MaksimEkin/RFoT/actions/workflows/ci_tests.yml/badge.svg?branch=main"></img>
     <img src="https://img.shields.io/hexpm/l/plug"></img>
     <img src="https://img.shields.io/badge/python-v3.8.5-blue"></img>
 </div>
@@ -80,7 +80,6 @@ print(f1)
 ## Prerequisites
 - [Anaconda](https://docs.anaconda.com/anaconda/install/)(Optional)
 - numpy>=1.19.2
-- numpy-indexed>=0.3.5
 - pandas>=1.0.5
 - matplotlib>=3.3.4
 - joblib>=1.0.1
