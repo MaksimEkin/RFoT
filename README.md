@@ -46,6 +46,7 @@ from sklearn.metrics import f1_score
 from RFoT import RFoT
 
 # Load/pre-process the dataset
+# Use a small version of EMBER-2018 dataset
 df = pd.read_pickle("data/mini_ember_df.p")
 df.dropna(inplace=True)
 df = df[(np.abs(stats.zscore(df)) < 3).all(axis=1)]
@@ -63,7 +64,6 @@ y_experiment[random_unlabeled_points] = -1
 
 # Predict the unknown sample labels
 model = RFoT(
-        bin_scale=1,
         max_dimensions=5,
         component_purity_tol=0.99,
         min_rank=11,
@@ -71,7 +71,7 @@ model = RFoT(
         n_estimators=100,
         bin_entry=True,
         clustering="ms",
-        max_depth=1,
+        max_depth=2,
         n_jobs=10,
 )
 y_pred = model.predict(X, y_experiment)
@@ -87,17 +87,23 @@ f1 = f1_score(
 )
 print(f1)
 ```
+**See the [examples](examples/) for more.**
 
 ## Prerequisites
 - [Anaconda](https://docs.anaconda.com/anaconda/install/)(Optional)
-- numpy>=1.19.2
-- pandas>=1.0.5
+- numpy~=1.19.2
 - matplotlib>=3.3.4
-- joblib>=1.0.1
+- pandas>=1.0.5
 - scikit-learn>=0.22.2
 - scipy>=1.5.3
 - seaborn>=0.11.1
-- torch>=1.6.0
-- requests>=2.25.1
 - tqdm>=4.62.3
 - sparse>=0.13.0
+
+## References
+[1] General software, latest release: Brett W. Bader, Tamara G. Kolda and others, Tensor Toolbox for MATLAB, Version 3.2.1, www.tensortoolbox.org, April 5, 2021.
+
+[2] Dense tensors: B. W. Bader and T. G. Kolda, Algorithm 862: MATLAB Tensor Classes for Fast Algorithm Prototyping, ACM Trans. Mathematical Software, 32(4):635-653, 2006, http://dx.doi.org/10.1145/1186785.1186794.
+
+[3] Sparse, Kruskal, and Tucker tensors: B. W. Bader and T. G. Kolda, Efficient MATLAB Computations with Sparse and Factored Tensors, SIAM J. Scientific Computing, 30(1):205-231, 2007, http://dx.doi.org/10.1137/060676489.
+
