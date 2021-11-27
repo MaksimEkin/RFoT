@@ -52,7 +52,7 @@ class TestNumpy(unittest.TestCase):
     def test_latent_factors_count(self):
         """Make sure the resulting latent factors are as expected for count tensor."""
         
-        decomposition = self.cp_apr.train(coords=self.sparse['coords'], 
+        decomposition = self.cp_apr.fit(coords=self.sparse['coords'], 
                                           values=self.sparse['nnz_count'], 
                                           rank=2, Minit=self.sparse['M_init'])
         
@@ -76,7 +76,7 @@ class TestNumpy(unittest.TestCase):
     def test_latent_factors_count(self):
         """Make sure the resulting latent factors are as expected for count tensor."""
         
-        decomposition = self.model.train(coords=self.sparse['coords'], 
+        decomposition = self.model.fit(coords=self.sparse['coords'], 
                                        values=self.sparse['nnz_count'], 
                                        rank=2)
         # TODO: actualtest
