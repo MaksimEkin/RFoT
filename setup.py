@@ -26,7 +26,8 @@ setup(
         'pandas', 'scikit-learn', 'scipy', 'seaborn',
         'tqdm', 'sparse'
     ],
-    url='',
+    url='https://github.com/MaksimEkin/RFoT',
+    dependency_links=['https://github.com/lanl/pyCP_APR/tarball/main#egg=pyCP_APR-1.0.1'],
     packages=find_packages(),
     classifiers=[
         'Development Status :: 3 - Alpha',

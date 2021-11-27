@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from .cp_als_numpy.cp_als import CP_ALS
+from pyCP_APR import CP_APR
 
 from .utilities.bin_columns import bin_columns
 from .utilities.sample_tensor_configs import setup_tensors
@@ -75,15 +76,30 @@ class RFoT:
         self.classes = None
         self.n_jobs = n_jobs
 
-        allowed_decompositions = ["cp_als", "numpy_cp_als"]
+        allowed_decompositions = ["cp_als", "cp_apr", "cp_apr_gpu"]
 
-        if self.decomp in ["cp_als", "numpy_cp_als"]:
+        if self.decomp in ["cp_als"]:
             self.backend = CP_ALS(
                 tol=self.tol,
                 n_iters=self.n_iters,
                 verbose=self.decomp_verbose,
                 fixsigns=self.fixsigns,
                 random_state=self.random_state,
+            )
+        elif self.decomp in ["cp_apr"]:
+            self.backend = CP_APR(
+                n_iters=self.n_iters,
+                verbose=self.decomp_verbose,
+                random_state=self.random_state,
+            )
+        elif self.decomp in ["cp_apr_gpu"]:
+            self.backend = CP_APR(
+                n_iters=self.n_iters,
+                verbose=self.decomp_verbose,
+                random_state=self.random_state,
+                method='torch',
+                device='gpu',
+                return_type='numpy'
             )
         else:
             raise Exception(
@@ -286,10 +302,10 @@ class RFoT:
         #
         curr_tensor = setup_sptensor(curr_df, config)
 
-        decomp = self.backend.train(
-            curr_tensor["nnz_coords"],
-            curr_tensor["nnz_values"],
-            int(config["rank"]),
+        decomp = self.backend.fit(
+            coords = curr_tensor["nnz_coords"],
+            values = curr_tensor["nnz_values"],
+            rank = int(config["rank"]),
         )
         # use the latent factor representing the samples (mode 0)
         latent_factor_0 = decomp["Factors"]["0"]

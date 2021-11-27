@@ -24,7 +24,7 @@ class CP_ALS:
         self.dimorder = []
         np.random.seed(self.random_state)
 
-    def train(self, coords=[], values=[], rank=2, Minit="random"):
+    def fit(self, coords=[], values=[], rank=2, Minit="random"):
 
         if rank <= 0:
             raise Exception("Number of components requested must be positive")
