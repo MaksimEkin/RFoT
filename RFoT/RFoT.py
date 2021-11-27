@@ -236,13 +236,18 @@ class RFoT:
         for key, config in tensor_configs.items():
             tasks.append((config, X, y))
 
-        pool = Pool(processes=self.n_jobs)
-        for tv in tqdm.tqdm(
-            pool.istarmap(self._get_tensor_votes, tasks, chunksize=1),
-            total=len(tasks),
-            disable=not (self.verbose),
-        ):
-            tensor_votes.append(tv)
+        if self.decomp in ["cp_als", "cp_apr"]:
+            pool = Pool(processes=self.n_jobs)
+            for tv in tqdm.tqdm(
+                pool.istarmap(self._get_tensor_votes, tasks, chunksize=1),
+                total=len(tasks),
+                disable=not (self.verbose),
+            ):
+                tensor_votes.append(tv)
+        elif self.decomp in ["cp_apr_gpu"]:
+            for task in tqdm.tqdm(tasks, total=len(tasks), disable=not (self.verbose)):
+                tv = self._get_tensor_votes(config=task[0], X=task[1], y=task[2])
+                tensor_votes.append(tv)
 
         #
         # Combine votes from each tensor
