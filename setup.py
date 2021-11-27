@@ -9,6 +9,7 @@ with open('README.md', 'r') as f:
 # add dependencies
 with open('requirements.txt', 'r') as f:
     INSTALL_REQUIRES = f.read().strip().split('\n')
+    INSTALL_REQUIRES.append("pyCP_APR @ https://github.com/lanl/pyCP_APR/tarball/main#egg=pyCP_APR-1.0.1")
 
 setup(
     name='RFoT',
@@ -27,7 +28,6 @@ setup(
         'tqdm', 'sparse'
     ],
     url='https://github.com/MaksimEkin/RFoT',
-    install_requires=['pyCP_APR @ https://github.com/lanl/pyCP_APR/tarball/main#egg=pyCP_APR-1.0.1'],
     dependency_links=['https://github.com/lanl/pyCP_APR/tarball/main#egg=pyCP_APR-1.0.1'],
     packages=find_packages(),
     classifiers=[
