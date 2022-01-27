@@ -47,6 +47,7 @@ class RFoT:
         fixsigns=True,
         random_state=42,
         n_jobs=1,
+        n_gpus=1,
     ):
 
         self.max_depth = max_depth
@@ -75,37 +76,10 @@ class RFoT:
         self.random_state = random_state
         self.classes = None
         self.n_jobs = n_jobs
+        self.n_gpus = n_gpus
 
-        allowed_decompositions = ["cp_als", "cp_apr", "cp_apr_gpu"]
+        self.allowed_decompositions = ["cp_als", "cp_apr", "cp_apr_gpu"]
 
-        if self.decomp in ["cp_als"]:
-            self.backend = CP_ALS(
-                tol=self.tol,
-                n_iters=self.n_iters,
-                verbose=self.decomp_verbose,
-                fixsigns=self.fixsigns,
-                random_state=self.random_state,
-            )
-        elif self.decomp in ["cp_apr"]:
-            self.backend = CP_APR(
-                n_iters=self.n_iters,
-                verbose=self.decomp_verbose,
-                random_state=self.random_state,
-            )
-        elif self.decomp in ["cp_apr_gpu"]:
-            self.backend = CP_APR(
-                n_iters=self.n_iters,
-                verbose=self.decomp_verbose,
-                random_state=self.random_state,
-                method='torch',
-                device='gpu',
-                return_type='numpy'
-            )
-        else:
-            raise Exception(
-                "Unknown tensor decomposition method. Choose from: "
-                + ", ".join(allowed_decompositions)
-            )
 
         assert (
             self.cluster_quality_tol > 0 or self.component_purity_tol > 0
@@ -122,18 +96,6 @@ class RFoT:
         """ """
 
         return vars(self)
-
-    def get_params_backend(self):
-        """ """
-
-        return vars(self.backend)
-
-    def set_params_backend(self, **parameters):
-        """ """
-
-        for parameter, value in parameters.items():
-            setattr(self.backend, parameter, value)
-        return self.backend
 
     def set_params(self, **parameters):
         """ """
@@ -233,8 +195,14 @@ class RFoT:
         #
         tensor_votes = list()
         tasks = []
+        
+        idx = 0
         for key, config in tensor_configs.items():
-            tasks.append((config, X, y))
+            if self.decomp in ["cp_apr_gpu"]:
+                tasks.append((config, X, y, idx%self.n_gpus))
+            else:
+                tasks.append((config, X, y))
+            idx+=1
 
         if self.decomp in ["cp_als", "cp_apr"]:
             pool = Pool(processes=self.n_jobs)
@@ -246,7 +214,7 @@ class RFoT:
                 tensor_votes.append(tv)
         elif self.decomp in ["cp_apr_gpu"]:
             for task in tqdm.tqdm(tasks, total=len(tasks), disable=not (self.verbose)):
-                tv = self._get_tensor_votes(config=task[0], X=task[1], y=task[2])
+                tv = self._get_tensor_votes(config=task[0], X=task[1], y=task[2], gpu_id=task[3])
                 tensor_votes.append(tv)
 
         #
@@ -274,7 +242,41 @@ class RFoT:
 
         return y_pred, predicted_indices
 
-    def _get_tensor_votes(self, config, X, y):
+    def _get_tensor_votes(self, config, X, y, gpu_id=0):
+        
+        #
+        # setup backend
+        #
+        if self.decomp in ["cp_als"]:
+            backend = CP_ALS(
+                tol=self.tol,
+                n_iters=self.n_iters,
+                verbose=self.decomp_verbose,
+                fixsigns=self.fixsigns,
+                random_state=self.random_state,
+            )
+        elif self.decomp in ["cp_apr"]:
+            backend = CP_APR(
+                n_iters=self.n_iters,
+                verbose=self.decomp_verbose,
+                random_state=self.random_state,
+            )
+        elif self.decomp in ["cp_apr_gpu"]:
+            backend = CP_APR(
+                n_iters=self.n_iters,
+                verbose=self.decomp_verbose,
+                random_state=self.random_state,
+                method='torch',
+                device='gpu',
+                device_num=gpu_id,
+                return_type='numpy'
+            )
+        else:
+            raise Exception(
+                "Unknown tensor decomposition method. Choose from: "
+                + ", ".join(self.allowed_decompositions)
+            )
+        
 
         # original indices
         all_indices = np.arange(0, len(X))
@@ -307,11 +309,12 @@ class RFoT:
         #
         curr_tensor = setup_sptensor(curr_df, config)
 
-        decomp = self.backend.fit(
+        decomp = backend.fit(
             coords = curr_tensor["nnz_coords"],
             values = curr_tensor["nnz_values"],
             rank = int(config["rank"]),
         )
+        del backend
         # use the latent factor representing the samples (mode 0)
         latent_factor_0 = decomp["Factors"]["0"]
 

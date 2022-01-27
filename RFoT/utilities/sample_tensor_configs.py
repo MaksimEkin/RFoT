@@ -41,6 +41,7 @@ def setup_tensors(
     
     # sort the dimensions, randomly choose entry, randomly choose rank, add the sample dimension
     tensor_setups=dict()
+    used_setups = dict()
     for ii, dims in enumerate(random_dimensions):
 
         # sort the dimensions by the unique number of elements
@@ -52,12 +53,23 @@ def setup_tensors(
         # find the possible tensor entries that are not in the dimensions already
         not_in_dimensions = list(list(set(dims)-set(dimensions)) + list(set(dimensions)-set(dims)))
 
-        tensor_setups[str(ii)] = dict()
-        tensor_setups[str(ii)]["dimensions"] = [0]+dims # [0] for the Sample dimension (for mode 0)
-        tensor_setups[str(ii)]["entry"] = random.choice(not_in_dimensions)
+        # finalize
+        dimensions_curr = [0]+dims # [0] for the Sample dimension (for mode 0)
+        entry_curr = random.choice(not_in_dimensions)
+        
         if rank == "random":
-            tensor_setups[str(ii)]["rank"] = np.random.randint(min_rank, max_rank, 1)[0]
+            selected_rank_curr = np.random.randint(min_rank, max_rank, 1)[0]
         else:
-            tensor_setups[str(ii)]["rank"] = rank
+            selected_rank_curr = rank
+        
+        # ensure we have not used the same setup before
+        dimensions_str = [str(i) for i in dimensions_curr]
+        identifier = ";".join(dimensions_str) + str(entry_curr) + str(selected_rank_curr)
+        if identifier not in used_setups:
+            used_setups[identifier] = 1
+            tensor_setups[str(ii)] = dict()
+            tensor_setups[str(ii)]["dimensions"] = dimensions_curr
+            tensor_setups[str(ii)]["entry"] = entry_curr
+            tensor_setups[str(ii)]["rank"] = selected_rank_curr
             
     return tensor_setups
