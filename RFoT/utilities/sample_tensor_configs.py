@@ -31,8 +31,8 @@ def setup_tensors(
     # Possible tensor dimension sizes
     possible_dimension_sizes = list(range(min_dimensions-1, max_dimensions+1))
     
-    # Sample n from the possible dimension sizes
-    target_dim_sizes = random.choices(possible_dimension_sizes, k=n_estimators)
+    # Sample n from the possible dimension sizes, with the 10% over-sample rate included
+    target_dim_sizes = random.choices(possible_dimension_sizes, k=n_estimators+(int(n_estimators * 0.1)))
     random_dimensions = list()
     
     # for each possible number of dimensions setup, choose random set of dimensions
@@ -71,5 +71,15 @@ def setup_tensors(
             tensor_setups[str(ii)]["dimensions"] = dimensions_curr
             tensor_setups[str(ii)]["entry"] = entry_curr
             tensor_setups[str(ii)]["rank"] = selected_rank_curr
+    
+    # adjust for over-sampling
+    if len(tensor_setups) > n_estimators:
+        tensor_setups_cpy = tensor_setups.copy()
+        tensor_setups = {}
+            
+        for ii, (key, values) in enumerate(tensor_setups_cpy.items()):
+            tensor_setups[str(ii)] = values
+            if ii == (n_estimators - 1):
+                break
             
     return tensor_setups
