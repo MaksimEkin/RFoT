@@ -10,6 +10,7 @@ from .utilities.istarmap import istarmap
 
 from .clustering.gmm import gmm_cluster
 from .clustering.ms import ms_cluster
+from .clustering.component import component_cluster
 
 from multiprocessing import Pool
 from collections import Counter
@@ -29,8 +30,8 @@ class RFoT:
         max_dimensions=3,
         min_cluster_search=2,
         max_cluster_search=12,
-        component_purity_tol=0.9,
-        cluster_quality_tol=-1,
+        component_purity_tol=-1,
+        cluster_purity_tol=0.9,
         n_estimators=80,
         rank="random",
         clustering="gmm",
@@ -58,7 +59,7 @@ class RFoT:
         self.min_cluster_search = min_cluster_search
         self.max_cluster_search = max_cluster_search
         self.component_purity_tol = component_purity_tol
-        self.cluster_quality_tol = cluster_quality_tol
+        self.cluster_purity_tol = cluster_purity_tol
         self.n_estimators = n_estimators
         self.rank = rank
         self.clustering = clustering
@@ -78,17 +79,19 @@ class RFoT:
         self.n_jobs = n_jobs
         self.n_gpus = n_gpus
 
-        self.allowed_decompositions = ["cp_als", "cp_apr", "cp_apr_gpu"]
+        self.allowed_decompositions = ["cp_als", "cp_apr", "cp_apr_gpu", "debug"]
 
 
         assert (
-            self.cluster_quality_tol > 0 or self.component_purity_tol > 0
+            self.cluster_purity_tol > 0 or self.component_purity_tol > 0
         ), "Cluster purity and/or component purity must be >0"
 
         if self.clustering == "gmm":
             self.cluster = gmm_cluster
         elif self.clustering == "ms":
             self.cluster = ms_cluster
+        elif self.clustering == "component":
+            self.cluster = component_cluster
         else:
             raise Exception("Unknown clustering method is chosen.")
 
@@ -212,9 +215,15 @@ class RFoT:
                 disable=not (self.verbose),
             ):
                 tensor_votes.append(tv)
+        
         elif self.decomp in ["cp_apr_gpu"]:
             for task in tqdm.tqdm(tasks, total=len(tasks), disable=not (self.verbose)):
                 tv = self._get_tensor_votes(config=task[0], X=task[1], y=task[2], gpu_id=task[3])
+                tensor_votes.append(tv)
+        
+        elif self.decomp in ["debug"]:
+            for task in tqdm.tqdm(tasks, total=len(tasks), disable=not (self.verbose)):
+                tv = self._get_tensor_votes(config=task[0], X=task[1], y=task[2])
                 tensor_votes.append(tv)
 
         #
@@ -232,14 +241,21 @@ class RFoT:
         #
         # Max vote on the results of current depth
         #
+        self.votes = votes
         predicted_indices = []
         y_pred = y.copy()
         for sample_idx, sample_votes in votes.items():
+            
+            # no decision was made (50-50)
+            if len(set(sample_votes)) == 1:
+                y_pred[sample_idx] = -1
+                continue
+                
             max_value = max(sample_votes)
             max_index = sample_votes.index(max_value)
             y_pred[sample_idx] = max_index
             predicted_indices.append(sample_idx)
-
+        
         return y_pred, predicted_indices
 
     def _get_tensor_votes(self, config, X, y, gpu_id=0):
@@ -247,7 +263,7 @@ class RFoT:
         #
         # setup backend
         #
-        if self.decomp in ["cp_als"]:
+        if self.decomp in ["cp_als", "debug"]:
             backend = CP_ALS(
                 tol=self.tol,
                 n_iters=self.n_iters,
@@ -333,7 +349,7 @@ class RFoT:
             curr_y = y[mask]
             known_sample_indices = np.argwhere(y[mask] != -1).flatten()
             unknown_sample_indices = np.argwhere(y[mask] == -1).flatten()
-
+            
             if len(curr_y) == 0:
                 continue
 
@@ -351,7 +367,7 @@ class RFoT:
             except Exception:
                 # error when clustering this component, skip
                 continue
-
+                
             #
             # Calculate Component Quality
             #
@@ -363,7 +379,7 @@ class RFoT:
                 # poor component quality, poor purity among clusters, skip component
                 if purity_score < self.component_purity_tol:
                     continue
-
+      
             #
             # Semi-supervised voting
             #
@@ -391,12 +407,12 @@ class RFoT:
         mask,
         votes,
     ):
-
+        
         for c in range(n_opt):
-
+            
             # current cluster sample informations
             cluster_c_indices = np.argwhere(cluster_labels == c).flatten()
-
+   
             # empty cluster
             if len(cluster_c_indices) == 0:
                 continue
@@ -408,7 +424,7 @@ class RFoT:
                 unknown_sample_indices, cluster_c_indices
             )
             cluster_c_known_labels = curr_y[cluster_c_known_indices]
-
+            
             # everyone is known in the cluster
             if len(cluster_c_unknown_indices) == 0:
                 continue
@@ -419,15 +435,15 @@ class RFoT:
 
             # count the known labels in the cluster
             cluster_c_known_label_counts = dict(Counter(cluster_c_known_labels))
-
+            
             # cluster quality
-            if self.cluster_quality_tol > 0:
+            if self.cluster_purity_tol > 0:
                 cluster_quality_score = max(
                     cluster_c_known_label_counts.values()
                 ) / sum(cluster_c_known_label_counts.values())
 
                 # cluster quality is poor, skip this cluster
-                if cluster_quality_score < self.cluster_quality_tol:
+                if cluster_quality_score < self.cluster_purity_tol:
                     continue
 
             # vote

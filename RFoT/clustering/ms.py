@@ -11,11 +11,11 @@ def ms_cluster(params):
 
     # single sample in the factor
     if len(M_r) == 1:
-        return [0], 1
+        return np.array([0]), 1
 
     # single unique element(s) in the factor
     if len(np.unique(M_r)) == 1:
-        return [0] * len(M_r), 1
+        return np.array([0] * len(M_r)), 1
 
     X = np.array(list(zip(M_r, np.zeros(len(M_r)))))
     bandwidth = estimate_bandwidth(X, quantile=0.1, random_state=random_state)
