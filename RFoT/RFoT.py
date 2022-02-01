@@ -49,6 +49,7 @@ class RFoT:
         random_state=42,
         n_jobs=1,
         n_gpus=1,
+        gpu_id=0,
     ):
 
         self.max_depth = max_depth
@@ -78,6 +79,7 @@ class RFoT:
         self.classes = None
         self.n_jobs = n_jobs
         self.n_gpus = n_gpus
+        self.gpu_id = gpu_id
 
         self.allowed_decompositions = ["cp_als", "cp_apr", "cp_apr_gpu", "debug"]
 
@@ -202,11 +204,14 @@ class RFoT:
         idx = 0
         for key, config in tensor_configs.items():
             if self.decomp in ["cp_apr_gpu"]:
-                tasks.append((config, X, y, idx%self.n_gpus))
+                if self.n_gpus == 1:
+                    tasks.append((config, X, y, self.gpu_id))
+                else:
+                    tasks.append((config, X, y, idx%self.n_gpus))
             else:
                 tasks.append((config, X, y))
             idx+=1
-
+        
         if self.decomp in ["cp_als", "cp_apr"]:
             pool = Pool(processes=self.n_jobs)
             for tv in tqdm.tqdm(
@@ -217,6 +222,14 @@ class RFoT:
                 tensor_votes.append(tv)
         
         elif self.decomp in ["cp_apr_gpu"]:
+            #pool = Pool(processes=self.n_jobs)
+            #for tv in tqdm.tqdm(
+            #    pool.istarmap(self._get_tensor_votes, tasks, chunksize=1),
+            #    total=len(tasks),
+            #    disable=not (self.verbose),
+            #):
+            #    tensor_votes.append(tv)
+            
             for task in tqdm.tqdm(tasks, total=len(tasks), disable=not (self.verbose)):
                 tv = self._get_tensor_votes(config=task[0], X=task[1], y=task[2], gpu_id=task[3])
                 tensor_votes.append(tv)
