@@ -106,6 +106,9 @@ print(f1)
 - requests>=2.25.1
 - spacy
 
+## Developer Test Suite
+Developer test suites are located under [```tests/```](tests/) directory. Tests can be ran from this folder using ```python -m unittest *```.
+
 ## References
 [1] General software, latest release: Brett W. Bader, Tamara G. Kolda and others, Tensor Toolbox for MATLAB, Version 3.2.1, www.tensortoolbox.org, April 5, 2021.
 
