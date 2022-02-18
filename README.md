@@ -12,7 +12,8 @@
   <img width="500" src="RFoT/rfot_demo.png">
 </p>
 
-We introduce a novel semi-supervised ensemble classifier named Random Forest of Tensors (RFoT) that is based on generating a tree of tensors that share the same first dimension, and randomly selecting the remaining dimensions and entries of each tensor from the features set. This algorithm is capable of performing abstaining predictions, i.e. say "I do not know" when the prediction is uncertain. Each of the randomly configured tensors that are decomposed with a randomly selected rank will obtain a unique bias and discover different information hidden in our data. Because we exploit the philosophy *"wisdom of crowds*, if one tensor configuration yields poor groupings among the classes, the effect of it would be negligible compared to the other tensors that discovered meaningful arrangements among the classes. We can then apply a clustering algorithm to capture the patterns at each of the latent factors for the first dimension within each R component, for each tensor configuration. The resulting C clusters for each component of each random tensor can be filtered using a cluster purity score threshold based on only the known samples within each component. This way, we can remove the inferior components that contain noise. The unknown samples within each cluster can be assigned a class vote using this handful of known instances in a semi-supervised way. These class assignments for the samples are the votes from each of the components. The final class prediction can then be obtained by performing a majority vote on each sample. The process mentioned above, forming a tree of tensors, can be repeated multiple times to form a forest. At each following tree, we look at the abstaining predictions from the prior tree to attempt to capture new patterns.
+Tensor decomposition is a powerful unsupervised ML method that enables the modeling of multi-dimensional data, including malware data. This paper introduces a novel ensemble semi-supervised classification algorithm, named Random Forest of Tensors (RFoT), that utilizes tensor decomposition to extract the complex and multi-faceted latent patterns from data. Our hybrid model leverages the strength of multi-dimensional analysis combined with clustering to capture the sample groupings in the latent components whose combinations distinguish malware and benign-ware. The patterns extracted from a given data with tensor decomposition depend on the configuration of the tensor such as dimension, entry, and rank selection. To capture the unique perspectives of different tensor configurations we employ the *"wisdom of crowds"* philosophy, and make use of decisions made by the majority of a randomly generated ensemble of tensors with varying dimensions, entries, and ranks. We show the capabilities of RFoT when classifying malware and benign-ware from the EMBER-2018 dataset.
+
 
 <div align="center", style="font-size: 50px">
 
@@ -64,15 +65,15 @@ y_experiment[random_unlabeled_points] = -1
 
 # Predict the unknown sample labels
 model = RFoT(
-        max_dimensions=5,
-        component_purity_tol=0.99,
-        min_rank=11,
-        max_rank=21,
-        n_estimators=100,
-        bin_entry=True,
+        bin_scale=1,
+        min_dimensions=3,
+        max_dimensions=8,
+        component_purity_tol=1.0,
+        rank=2,
+        n_estimators=200,
+        bin_entry=False,
         clustering="ms",
-        max_depth=2,
-        n_jobs=10,
+        n_jobs=50,
 )
 y_pred = model.predict(X, y_experiment)
 
@@ -90,7 +91,6 @@ print(f1)
 **See the [examples](examples/) for more.**
 
 ## Prerequisites
-- [Anaconda](https://docs.anaconda.com/anaconda/install/)(Optional)
 - numpy~=1.19.2
 - matplotlib>=3.3.4
 - pandas>=1.0.5
@@ -99,6 +99,11 @@ print(f1)
 - seaborn>=0.11.1
 - tqdm>=4.62.3
 - sparse>=0.13.0
+- joblib>=1.0.1
+- numpy-indexed>=0.3.5
+- torch>=1.6.0
+- requests>=2.25.1
+- spacy
 
 ## References
 [1] General software, latest release: Brett W. Bader, Tamara G. Kolda and others, Tensor Toolbox for MATLAB, Version 3.2.1, www.tensortoolbox.org, April 5, 2021.
