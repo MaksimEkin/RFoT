@@ -78,11 +78,38 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../modules.html">
-   RFoT
+  <a class="reference internal" href="../../RFoT.html">
+   RFoT package
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../RFoT.clustering.html">
+     RFoT.clustering package
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../RFoT.cp_als_numpy.html">
+     RFoT.cp_als_numpy package
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../RFoT.utilities.html">
+     RFoT.utilities package
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../modules.html">
+   RFoT
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -91,8 +118,8 @@
     <a class="reference internal" href="../../RFoT.html">
      RFoT package
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-    <label for="toctree-checkbox-2">
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -185,6 +212,19 @@
                 
   <h1>Source code for RFoT.RFoT</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Tensor decomposition is a powerful unsupervised ML method that enables the modeling of multi-dimensional data, including malware data. This paper introduces a novel ensemble semi-supervised classification algorithm, named Random Forest of Tensors (RFoT), that utilizes tensor decomposition to extract the complex and multi-faceted latent patterns from data. Our hybrid model leverages the strength of multi-dimensional analysis combined with clustering to capture the sample groupings in the latent components whose combinations distinguish malware and benign-ware. The patterns extracted from a given data with tensor decomposition depend on the configuration of the tensor such as dimension, entry, and rank selection. To capture the unique perspectives of different tensor configurations we employ the &quot;wisdom of crowds&quot; philosophy, and make use of decisions made by the majority of a randomly generated ensemble of tensors with varying dimensions, entries, and ranks. We show the capabilities of RFoT when classifying malware and benign-ware from the EMBER-2018 dataset.</span>
+
+<span class="sd">References</span>
+<span class="sd">========================================</span>
+<span class="sd">[1] Eren, M.E., Moore, J.S., Skau, E.W., Bhattarai, M., Moore, E.A, and Alexandrov, B.. 2022. General-Purpose Unsupervised Cyber Anomaly Detection via Non-Negative Tensor Factorization. Digital Threats: Research and Practice, 28 pages. DOI: https://doi.org/10.1145/3519602</span>
+
+<span class="sd">[2] General software, latest release: Brett W. Bader, Tamara G. Kolda and others, Tensor Toolbox for MATLAB, Version 3.2.1, www.tensortoolbox.org, April 5, 2021.</span>
+
+<span class="sd">[3] Dense tensors: B. W. Bader and T. G. Kolda, Algorithm 862: MATLAB Tensor Classes for Fast Algorithm Prototyping, ACM Trans. Mathematical Software, 32(4):635-653, 2006, http://dx.doi.org/10.1145/1186785.1186794.</span>
+
+<span class="sd">[4] Sparse, Kruskal, and Tucker tensors: B. W. Bader and T. G. Kolda, Efficient MATLAB Computations with Sparse and Factored Tensors, SIAM J. Scientific Computing, 30(1):205-231, 2007, http://dx.doi.org/10.1137/060676489.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">.cp_als_numpy.cp_als</span> <span class="kn">import</span> <span class="n">CP_ALS</span>
 <span class="kn">from</span> <span class="nn">pyCP_APR</span> <span class="kn">import</span> <span class="n">CP_APR</span>
@@ -238,6 +278,7 @@
         <span class="n">gpu_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
     <span class="p">):</span>
 
+
         <span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span> <span class="o">=</span> <span class="n">max_depth</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">min_rank</span> <span class="o">=</span> <span class="n">min_rank</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_rank</span> <span class="o">=</span> <span class="n">max_rank</span>
@@ -284,19 +325,60 @@
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Unknown clustering method is chosen.&quot;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="RFoT.get_params"><a class="viewcode-back" href="../../RFoT.html#RFoT.RFoT.RFoT.get_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the parameters of the RFoT object.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+<span class="sd">            RFoT object variables.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="RFoT.set_params"><a class="viewcode-back" href="../../RFoT.html#RFoT.RFoT.RFoT.set_params">[docs]</a>    <span class="k">def</span> <span class="nf">set_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">parameters</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Used to set the parameters of RFoT object</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        **parameters : dict</span>
+<span class="sd">            Dictionary of parameters where keys are the variable names.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        object</span>
+<span class="sd">            RFoT object.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">for</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">parameters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
 <div class="viewcode-block" id="RFoT.predict"><a class="viewcode-back" href="../../RFoT.html#RFoT.RFoT.RFoT.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Predict the unknown samples (with labels -1) based on the known samples.</span>
+
+<span class="sd">        .. warning::</span>
+<span class="sd">            Use -1 for the unknown samples.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : np.array</span>
+<span class="sd">            Features matrix X where columns are the m features and rows are the n samples.</span>
+<span class="sd">        y : np.ndarray</span>
+<span class="sd">            Vector of size n with the label for each sample. Unknown samples have the labels -1.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        y_pred : np.ndarray</span>
+<span class="sd">            Predictions made over the original y. Known samples are kept as is. Unknown samples</span>
+<span class="sd">            that are no longer labeled as -1 did have prediction. Samples that are still -1 are</span>
+<span class="sd">            the abstaining predictions.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1">#</span>
         <span class="c1"># Input verification</span>
@@ -361,6 +443,31 @@
         <span class="k">return</span> <span class="n">y_pred</span></div>
 
     <span class="k">def</span> <span class="nf">_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">depth</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates random tensor configurations, then builds the tensors in COO format.</span>
+<span class="sd">        These tensors are then decomposed and the sample patters are captured with clustering</span>
+<span class="sd">        over the latent factors for the first dimension. Then semi-supervised voting</span>
+<span class="sd">        is performed over the clusters. These votes are returned.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : np.array</span>
+<span class="sd">            Features matrix X where columns are the m features and rows are the n samples.</span>
+<span class="sd">        y : np.ndarray</span>
+<span class="sd">            Vector of size n with the label for each sample. Unknown samples have the labels -1.</span>
+<span class="sd">        depth : int</span>
+<span class="sd">            Number of times to run RFoT.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        y_pred : np.ndarray</span>
+<span class="sd">            Predictions made over the original y. Known samples are kept as is. Unknown samples</span>
+<span class="sd">            that are no longer labeled as -1 did have prediction. Samples that are still -1 are</span>
+<span class="sd">            the abstaining predictions.</span>
+<span class="sd">        predicted_indices : np.ndarray</span>
+<span class="sd">            The indices in y_pred where unknown labels did have prediction values.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># unique classes</span>
         <span class="n">classes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
@@ -386,7 +493,7 @@
         <span class="c1">#</span>
         <span class="n">tensor_votes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
         <span class="n">tasks</span> <span class="o">=</span> <span class="p">[]</span>
-        
+
         <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">config</span> <span class="ow">in</span> <span class="n">tensor_configs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">decomp</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;cp_apr_gpu&quot;</span><span class="p">]:</span>
@@ -397,7 +504,7 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">tasks</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">config</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
             <span class="n">idx</span><span class="o">+=</span><span class="mi">1</span>
-        
+
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">decomp</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;cp_als&quot;</span><span class="p">,</span> <span class="s2">&quot;cp_apr&quot;</span><span class="p">]:</span>
             <span class="n">pool</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">tv</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span>
@@ -406,7 +513,7 @@
                 <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">),</span>
             <span class="p">):</span>
                 <span class="n">tensor_votes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tv</span><span class="p">)</span>
-        
+
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">decomp</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;cp_apr_gpu&quot;</span><span class="p">]:</span>
             <span class="c1">#pool = Pool(processes=self.n_jobs)</span>
             <span class="c1">#for tv in tqdm.tqdm(</span>
@@ -415,11 +522,11 @@
             <span class="c1">#    disable=not (self.verbose),</span>
             <span class="c1">#):</span>
             <span class="c1">#    tensor_votes.append(tv)</span>
-            
+
             <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">tasks</span><span class="p">),</span> <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">)):</span>
                 <span class="n">tv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_tensor_votes</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">task</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="o">=</span><span class="n">task</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">task</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">gpu_id</span><span class="o">=</span><span class="n">task</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
                 <span class="n">tensor_votes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tv</span><span class="p">)</span>
-        
+
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">decomp</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;debug&quot;</span><span class="p">]:</span>
             <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">tasks</span><span class="p">),</span> <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">)):</span>
                 <span class="n">tv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_tensor_votes</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">task</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="o">=</span><span class="n">task</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">task</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
@@ -444,21 +551,44 @@
         <span class="n">predicted_indices</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">y_pred</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">sample_idx</span><span class="p">,</span> <span class="n">sample_votes</span> <span class="ow">in</span> <span class="n">votes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            
+
             <span class="c1"># no decision was made (50-50)</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">sample_votes</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="n">y_pred</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
                 <span class="k">continue</span>
-                
+
             <span class="n">max_value</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">sample_votes</span><span class="p">)</span>
             <span class="n">max_index</span> <span class="o">=</span> <span class="n">sample_votes</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">max_value</span><span class="p">)</span>
             <span class="n">y_pred</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_index</span>
             <span class="n">predicted_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sample_idx</span><span class="p">)</span>
-        
+
         <span class="k">return</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">predicted_indices</span>
 
     <span class="k">def</span> <span class="nf">_get_tensor_votes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">gpu_id</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-        
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets up the tensor decomposition backend. Then bins the features to build the given</span>
+<span class="sd">        current tensor. Then the tensor is decomposed and the sample patters are captured with</span>
+<span class="sd">        clustering over the latent factors for the first dimension. Then semi-supervised voting</span>
+<span class="sd">        is performed over the clusters. These votes are returned.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        config : dict</span>
+<span class="sd">            Dictionary of tensor configuration.</span>
+<span class="sd">        X : np.array</span>
+<span class="sd">            Features matrix X where columns are the m features and rows are the n samples.</span>
+<span class="sd">        y : np.ndarray</span>
+<span class="sd">            Vector of size n with the label for each sample. Unknown samples have the labels -1.</span>
+<span class="sd">        gpu_id : int, optional</span>
+<span class="sd">            If running CP-APR, which GPU to use. The default is 0.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        votes : dict</span>
+<span class="sd">            Dictionary of votes for the samples.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="c1">#</span>
         <span class="c1"># setup backend</span>
         <span class="c1">#</span>
@@ -491,7 +621,7 @@
                 <span class="s2">&quot;Unknown tensor decomposition method. Choose from: &quot;</span>
                 <span class="o">+</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">allowed_decompositions</span><span class="p">)</span>
             <span class="p">)</span>
-        
+
 
         <span class="c1"># original indices</span>
         <span class="n">all_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
@@ -548,7 +678,7 @@
             <span class="n">curr_y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
             <span class="n">known_sample_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
             <span class="n">unknown_sample_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-            
+
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">curr_y</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="k">continue</span>
 
@@ -566,7 +696,7 @@
             <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                 <span class="c1"># error when clustering this component, skip</span>
                 <span class="k">continue</span>
-                
+
             <span class="c1">#</span>
             <span class="c1"># Calculate Component Quality</span>
             <span class="c1">#</span>
@@ -578,7 +708,7 @@
                 <span class="c1"># poor component quality, poor purity among clusters, skip component</span>
                 <span class="k">if</span> <span class="n">purity_score</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">component_purity_tol</span><span class="p">:</span>
                     <span class="k">continue</span>
-      
+
             <span class="c1">#</span>
             <span class="c1"># Semi-supervised voting</span>
             <span class="c1">#</span>
@@ -606,12 +736,40 @@
         <span class="n">mask</span><span class="p">,</span>
         <span class="n">votes</span><span class="p">,</span>
     <span class="p">):</span>
-        
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Performs semi-supervised voting for the current cluster and returns the votes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_opt : int</span>
+<span class="sd">            Number of clusters.</span>
+<span class="sd">        cluster_labels : np.ndarray</span>
+<span class="sd">            Labels for the samples in the cluster.</span>
+<span class="sd">        known_sample_indices : np.ndarray</span>
+<span class="sd">            Array of indices for known samples.</span>
+<span class="sd">        unknown_sample_indices : np.ndarray</span>
+<span class="sd">            Array of indices for unknown samples.</span>
+<span class="sd">        curr_y : np.ndarray</span>
+<span class="sd">            Labels for known and unknown samples.</span>
+<span class="sd">        all_indices : np.ndarray</span>
+<span class="sd">            Original indices.</span>
+<span class="sd">        mask : np.ndarray</span>
+<span class="sd">            Mask for removing elements without signals.</span>
+<span class="sd">        votes : dict</span>
+<span class="sd">            Votes so far.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        votes : dict</span>
+<span class="sd">            Updated votes.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_opt</span><span class="p">):</span>
-            
+
             <span class="c1"># current cluster sample informations</span>
             <span class="n">cluster_c_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">cluster_labels</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-   
+
             <span class="c1"># empty cluster</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cluster_c_indices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="k">continue</span>
@@ -623,7 +781,7 @@
                 <span class="n">unknown_sample_indices</span><span class="p">,</span> <span class="n">cluster_c_indices</span>
             <span class="p">)</span>
             <span class="n">cluster_c_known_labels</span> <span class="o">=</span> <span class="n">curr_y</span><span class="p">[</span><span class="n">cluster_c_known_indices</span><span class="p">]</span>
-            
+
             <span class="c1"># everyone is known in the cluster</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cluster_c_unknown_indices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="k">continue</span>
@@ -634,7 +792,7 @@
 
             <span class="c1"># count the known labels in the cluster</span>
             <span class="n">cluster_c_known_label_counts</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">Counter</span><span class="p">(</span><span class="n">cluster_c_known_labels</span><span class="p">))</span>
-            
+
             <span class="c1"># cluster quality</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cluster_purity_tol</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">cluster_quality_score</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
@@ -662,7 +820,26 @@
         <span class="k">return</span> <span class="n">votes</span>
 
     <span class="k">def</span> <span class="nf">_component_quality</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_opt</span><span class="p">,</span> <span class="n">cluster_labels</span><span class="p">,</span> <span class="n">known_sample_indices</span><span class="p">,</span> <span class="n">curr_y</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates component quality based on cluster purity score.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_opt : int</span>
+<span class="sd">            Number of clusters.</span>
+<span class="sd">        cluster_labels : np.ndarray</span>
+<span class="sd">            Labels for the samples in the cluster.</span>
+<span class="sd">        known_sample_indices : np.ndarray</span>
+<span class="sd">            Array of indices for known samples.</span>
+<span class="sd">        curr_y : np.ndarray</span>
+<span class="sd">            Labels for known and unknown samples.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float</span>
+<span class="sd">            Purity score.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">maximums</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>

@@ -78,11 +78,38 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../../modules.html">
-   RFoT
+  <a class="reference internal" href="../../../RFoT.html">
+   RFoT package
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../RFoT.clustering.html">
+     RFoT.clustering package
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../RFoT.cp_als_numpy.html">
+     RFoT.cp_als_numpy package
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../RFoT.utilities.html">
+     RFoT.utilities package
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../modules.html">
+   RFoT
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -91,8 +118,8 @@
     <a class="reference internal" href="../../../RFoT.html">
      RFoT package
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-    <label for="toctree-checkbox-2">
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -184,12 +211,15 @@
               <div>
                 
   <h1>Source code for RFoT.utilities.sample_tensor_configs</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Samples random tensor configurations.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">random</span>
 
 <div class="viewcode-block" id="setup_tensors"><a class="viewcode-back" href="../../../RFoT.utilities.html#RFoT.utilities.sample_tensor_configs.setup_tensors">[docs]</a><span class="k">def</span> <span class="nf">setup_tensors</span><span class="p">(</span>
-    <span class="n">min_dimensions</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> 
+    <span class="n">min_dimensions</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span>
     <span class="n">max_dimensions</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span>
     <span class="n">X</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
     <span class="n">random_state</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span>
@@ -200,31 +230,57 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Samples random set of tensor configurations specified by the dimension</span>
 <span class="sd">    names, entry feature name, and the rank.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    min_dimensions : int</span>
+<span class="sd">        Minimum number of dimensions.</span>
+<span class="sd">    max_dimensions : int</span>
+<span class="sd">        Maximum number of dimensions.</span>
+<span class="sd">    X : pd.DataFrame</span>
+<span class="sd">        Dataset X.</span>
+<span class="sd">    random_state : int</span>
+<span class="sd">        random state seed.</span>
+<span class="sd">    n_estimators : int</span>
+<span class="sd">        Number of random tensors.</span>
+<span class="sd">    rank : int</span>
+<span class="sd">        Tensor rank. Could ne &quot;random&quot;.</span>
+<span class="sd">    min_rank : int</span>
+<span class="sd">        Minimum tensor rank.</span>
+<span class="sd">    max_rank : int</span>
+<span class="sd">        Maximum tensor rank.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tensor_setups : dict</span>
+<span class="sd">        Dictionary of random tensor setups.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">if</span> <span class="n">min_rank</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">min_rank</span> <span class="o">=</span> <span class="mi">1</span>
-    
+
     <span class="c1"># reduce max dimensions by one since we will add the first dimension to be samples</span>
     <span class="n">max_dimensions</span> <span class="o">-=</span> <span class="mi">1</span>
-    
+
     <span class="c1"># random seed for sampling</span>
     <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
     <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
-    
+
     <span class="c1"># get the name for the possible dimensions</span>
     <span class="n">dimensions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
 
     <span class="c1"># Possible tensor dimension sizes</span>
     <span class="n">possible_dimension_sizes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">min_dimensions</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_dimensions</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-    
+
     <span class="c1"># Sample n from the possible dimension sizes, with the 10% over-sample rate included</span>
     <span class="n">target_dim_sizes</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">(</span><span class="n">possible_dimension_sizes</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">n_estimators</span><span class="o">+</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">n_estimators</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">)))</span>
     <span class="n">random_dimensions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-    
+
     <span class="c1"># for each possible number of dimensions setup, choose random set of dimensions</span>
     <span class="k">for</span> <span class="n">dim_size</span> <span class="ow">in</span> <span class="n">target_dim_sizes</span><span class="p">:</span>
         <span class="n">random_dimensions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">dimensions</span><span class="p">,</span> <span class="n">dim_size</span><span class="p">))</span>
-    
+
     <span class="c1"># sort the dimensions, randomly choose entry, randomly choose rank, add the sample dimension</span>
     <span class="n">tensor_setups</span><span class="o">=</span><span class="nb">dict</span><span class="p">()</span>
     <span class="n">used_setups</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
@@ -242,12 +298,12 @@
         <span class="c1"># finalize</span>
         <span class="n">dimensions_curr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">dims</span> <span class="c1"># [0] for the Sample dimension (for mode 0)</span>
         <span class="n">entry_curr</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">not_in_dimensions</span><span class="p">)</span>
-        
+
         <span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="s2">&quot;random&quot;</span><span class="p">:</span>
             <span class="n">selected_rank_curr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">min_rank</span><span class="p">,</span> <span class="n">max_rank</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">selected_rank_curr</span> <span class="o">=</span> <span class="n">rank</span>
-        
+
         <span class="c1"># ensure we have not used the same setup before</span>
         <span class="n">dimensions_str</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">dimensions_curr</span><span class="p">]</span>
         <span class="n">identifier</span> <span class="o">=</span> <span class="s2">&quot;;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dimensions_str</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">entry_curr</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">selected_rank_curr</span><span class="p">)</span>
@@ -257,17 +313,17 @@
             <span class="n">tensor_setups</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">ii</span><span class="p">)][</span><span class="s2">&quot;dimensions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dimensions_curr</span>
             <span class="n">tensor_setups</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">ii</span><span class="p">)][</span><span class="s2">&quot;entry&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">entry_curr</span>
             <span class="n">tensor_setups</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">ii</span><span class="p">)][</span><span class="s2">&quot;rank&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">selected_rank_curr</span>
-    
+
     <span class="c1"># adjust for over-sampling</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tensor_setups</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">n_estimators</span><span class="p">:</span>
         <span class="n">tensor_setups_cpy</span> <span class="o">=</span> <span class="n">tensor_setups</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">tensor_setups</span> <span class="o">=</span> <span class="p">{}</span>
-            
+
         <span class="k">for</span> <span class="n">ii</span><span class="p">,</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tensor_setups_cpy</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="n">tensor_setups</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">ii</span><span class="p">)]</span> <span class="o">=</span> <span class="n">values</span>
             <span class="k">if</span> <span class="n">ii</span> <span class="o">==</span> <span class="p">(</span><span class="n">n_estimators</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
                 <span class="k">break</span>
-            
+
     <span class="k">return</span> <span class="n">tensor_setups</span></div>
 </pre></div>
 

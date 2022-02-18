@@ -36,7 +36,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="RFoT.clustering package" href="RFoT.clustering.html" />
-    <link rel="prev" title="RFoT" href="modules.html" />
+    <link rel="prev" title="Welcome to RFoT&#39;s documentation!" href="index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="Python">
     
@@ -80,11 +80,38 @@
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="modules.html">
-   RFoT
+  <a class="current reference internal" href="#">
+   RFoT package
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="RFoT.clustering.html">
+     RFoT.clustering package
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="RFoT.cp_als_numpy.html">
+     RFoT.cp_als_numpy package
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="RFoT.utilities.html">
+     RFoT.utilities package
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="modules.html">
+   RFoT
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -93,8 +120,8 @@
     <a class="current reference internal" href="#">
      RFoT package
     </a>
-    <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-    <label for="toctree-checkbox-2">
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -200,7 +227,7 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#module-RFoT.RFoT">
+  <a class="reference internal nav-link" href="#rfot-rfot-module">
    RFoT.RFoT module
   </a>
  </li>
@@ -245,7 +272,7 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#module-RFoT.RFoT">
+  <a class="reference internal nav-link" href="#rfot-rfot-module">
    RFoT.RFoT module
   </a>
  </li>
@@ -328,8 +355,28 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-RFoT.RFoT">
-<span id="rfot-rfot-module"></span><h2>RFoT.RFoT module<a class="headerlink" href="#module-RFoT.RFoT" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rfot-rfot-module">
+<h2>RFoT.RFoT module<a class="headerlink" href="#rfot-rfot-module" title="Permalink to this headline">¶</a></h2>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">RFoT.__init__</span></code>([max_depth, min_rank, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#RFoT.RFoT.RFoT.predict" title="RFoT.RFoT.RFoT.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RFoT.predict</span></code></a>(X, y)</p></td>
+<td><p>Predict the unknown samples (with labels -1) based on the known samples.</p></td>
+</tr>
+</tbody>
+</table>
+<span class="target" id="module-RFoT.RFoT"></span><p>Tensor decomposition is a powerful unsupervised ML method that enables the modeling of multi-dimensional data, including malware data. This paper introduces a novel ensemble semi-supervised classification algorithm, named Random Forest of Tensors (RFoT), that utilizes tensor decomposition to extract the complex and multi-faceted latent patterns from data. Our hybrid model leverages the strength of multi-dimensional analysis combined with clustering to capture the sample groupings in the latent components whose combinations distinguish malware and benign-ware. The patterns extracted from a given data with tensor decomposition depend on the configuration of the tensor such as dimension, entry, and rank selection. To capture the unique perspectives of different tensor configurations we employ the &quot;wisdom of crowds&quot; philosophy, and make use of decisions made by the majority of a randomly generated ensemble of tensors with varying dimensions, entries, and ranks. We show the capabilities of RFoT when classifying malware and benign-ware from the EMBER-2018 dataset.</p>
+<p class="rubric">References</p>
+<p>[1] Eren, M.E., Moore, J.S., Skau, E.W., Bhattarai, M., Moore, E.A, and Alexandrov, B.. 2022. General-Purpose Unsupervised Cyber Anomaly Detection via Non-Negative Tensor Factorization. Digital Threats: Research and Practice, 28 pages. DOI: <a class="reference external" href="https://doi.org/10.1145/3519602">https://doi.org/10.1145/3519602</a></p>
+<p>[2] General software, latest release: Brett W. Bader, Tamara G. Kolda and others, Tensor Toolbox for MATLAB, Version 3.2.1, www.tensortoolbox.org, April 5, 2021.</p>
+<p>[3] Dense tensors: B. W. Bader and T. G. Kolda, Algorithm 862: MATLAB Tensor Classes for Fast Algorithm Prototyping, ACM Trans. Mathematical Software, 32(4):635-653, 2006, <a class="reference external" href="http://dx.doi.org/10.1145/1186785.1186794">http://dx.doi.org/10.1145/1186785.1186794</a>.</p>
+<p>[4] Sparse, Kruskal, and Tucker tensors: B. W. Bader and T. G. Kolda, Efficient MATLAB Computations with Sparse and Factored Tensors, SIAM J. Scientific Computing, 30(1):205-231, 2007, <a class="reference external" href="http://dx.doi.org/10.1137/060676489">http://dx.doi.org/10.1137/060676489</a>.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="RFoT.RFoT.RFoT">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">RFoT.RFoT.</span></span><span class="sig-name descname"><span class="pre">RFoT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_rank</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_rank</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_dimensions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_dimensions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_cluster_search</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_cluster_search</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_purity_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_purity_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_estimators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rank</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'random'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clustering</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gmm'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decomp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cp_als'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zero_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dont_bin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_entry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_max_map</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'bin':</span> <span class="pre">1000,</span> <span class="pre">'max':</span> <span class="pre">1000000}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decomp_verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fixsigns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_gpus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gpu_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/RFoT/RFoT.html#RFoT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RFoT.RFoT.RFoT" title="Permalink to this definition">¶</a></dt>
@@ -337,17 +384,59 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="RFoT.RFoT.RFoT.get_params">
 <span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/RFoT/RFoT.html#RFoT.get_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RFoT.RFoT.RFoT.get_params" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Returns the parameters of the RFoT object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>RFoT object variables.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="RFoT.RFoT.RFoT.predict">
 <span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/RFoT/RFoT.html#RFoT.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RFoT.RFoT.RFoT.predict" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Predict the unknown samples (with labels -1) based on the known samples.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Use -1 for the unknown samples.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.array</em>) -- Features matrix X where columns are the m features and rows are the n samples.</p></li>
+<li><p><strong>y</strong> (<em>np.ndarray</em>) -- Vector of size n with the label for each sample. Unknown samples have the labels -1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>y_pred</strong> -- Predictions made over the original y. Known samples are kept as is. Unknown samples
+that are no longer labeled as -1 did have prediction. Samples that are still -1 are
+the abstaining predictions.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="RFoT.RFoT.RFoT.set_params">
 <span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/RFoT/RFoT.html#RFoT.set_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RFoT.RFoT.RFoT.set_params" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Used to set the parameters of RFoT object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>**parameters</strong> (<em>dict</em>) -- Dictionary of parameters where keys are the variable names.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>RFoT object.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -367,11 +456,11 @@
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="modules.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">RFoT</p>
+            <p class="prev-next-title">Welcome to RFoT's documentation!</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="RFoT.clustering.html" title="next page">

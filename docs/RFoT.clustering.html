@@ -80,11 +80,38 @@
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="modules.html">
-   RFoT
+  <a class="reference internal" href="RFoT.html">
+   RFoT package
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     RFoT.clustering package
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="RFoT.cp_als_numpy.html">
+     RFoT.cp_als_numpy package
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="RFoT.utilities.html">
+     RFoT.utilities package
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="modules.html">
+   RFoT
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -93,8 +120,8 @@
     <a class="reference internal" href="RFoT.html">
      RFoT package
     </a>
-    <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-    <label for="toctree-checkbox-2">
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -275,28 +302,71 @@
 </div>
 <div class="section" id="module-RFoT.clustering.component">
 <span id="rfot-clustering-component-module"></span><h2>RFoT.clustering.component module<a class="headerlink" href="#module-RFoT.clustering.component" title="Permalink to this headline">¶</a></h2>
+<p>Treats a single component as a cluster.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="RFoT.clustering.component.component_cluster">
 <span class="sig-prename descclassname"><span class="pre">RFoT.clustering.component.</span></span><span class="sig-name descname"><span class="pre">component_cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/RFoT/clustering/component.html#component_cluster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RFoT.clustering.component.component_cluster" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Uses a single component as a cluster.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>params</strong> (<em>dict</em>) -- Dict containing the latent component.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>np.ndarray</em> -- Cluster labels.</p></li>
+<li><p><em>int</em> -- Number of clusters.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
 
 </div>
 <div class="section" id="module-RFoT.clustering.gmm">
 <span id="rfot-clustering-gmm-module"></span><h2>RFoT.clustering.gmm module<a class="headerlink" href="#module-RFoT.clustering.gmm" title="Permalink to this headline">¶</a></h2>
+<p>Gaussian Mixture Model clustering.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="RFoT.clustering.gmm.GaussianMixture_find_n">
 <span class="sig-prename descclassname"><span class="pre">RFoT.clustering.gmm.</span></span><span class="sig-name descname"><span class="pre">GaussianMixture_find_n</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M_r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/RFoT/clustering/gmm.html#GaussianMixture_find_n"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RFoT.clustering.gmm.GaussianMixture_find_n" title="Permalink to this definition">¶</a></dt>
-<dd><p>Finds the optimal number of clusters using BIC score for component r of KRUSKAL tensor M_i.
-:param M_r: dict, KRUSKAL tensor's first latent factor.</p>
+<dd><p>Finds the optimal number of clusters using BIC score for component r of KRUSKAL tensor M_i.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>M_r</strong> (<em>np.ndarray</em>) -- latent factor.</p></li>
+<li><p><strong>min</strong> (<em>int</em>) -- Min clusters.</p></li>
+<li><p><strong>max</strong> (<em>int</em>) -- Max clusters.</p></li>
+<li><p><strong>random_state</strong> (<em>int</em>) -- Random state.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Number of clusers.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="RFoT.clustering.gmm.GaussianMixture_get_labels">
 <span class="sig-prename descclassname"><span class="pre">RFoT.clustering.gmm.</span></span><span class="sig-name descname"><span class="pre">GaussianMixture_get_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M_r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/RFoT/clustering/gmm.html#GaussianMixture_get_labels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RFoT.clustering.gmm.GaussianMixture_get_labels" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extracts the cluster labels for KRUSKAL tensor M_r for n clusters.
-M_r is the rth component of the KRUSKAL tensor M_i.
-:param M_r: dict, KRUSKAL tensor's first latent factor.
-:param n: int, number of clusters.</p>
+M_r is the rth component of the KRUSKAL tensor M_i.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>M_r</strong> (<em>np.ndarray</em>) -- latent factor.</p></li>
+<li><p><strong>n</strong> (<em>int</em>) -- Number of clusters.</p></li>
+<li><p><strong>random_state</strong> (<em>int</em>) -- Random state.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Labels.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -307,10 +377,24 @@ M_r is the rth component of the KRUSKAL tensor M_i.
 </div>
 <div class="section" id="module-RFoT.clustering.ms">
 <span id="rfot-clustering-ms-module"></span><h2>RFoT.clustering.ms module<a class="headerlink" href="#module-RFoT.clustering.ms" title="Permalink to this headline">¶</a></h2>
+<p>Mean Shift clustering</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="RFoT.clustering.ms.ms_cluster">
 <span class="sig-prename descclassname"><span class="pre">RFoT.clustering.ms.</span></span><span class="sig-name descname"><span class="pre">ms_cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/RFoT/clustering/ms.html#ms_cluster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RFoT.clustering.ms.ms_cluster" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Performs MS clustering in the latent factor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>params</strong> (<em>dict</em>) -- Dictionary with the latent factor and random state.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>np.ndarray</em> -- Cluster labels.</p></li>
+<li><p><em>int</em> -- Number of clusters.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
 
 </div>
 <div class="section" id="module-RFoT.clustering">

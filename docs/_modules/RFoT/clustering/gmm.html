@@ -78,11 +78,38 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../../modules.html">
-   RFoT
+  <a class="reference internal" href="../../../RFoT.html">
+   RFoT package
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../RFoT.clustering.html">
+     RFoT.clustering package
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../RFoT.cp_als_numpy.html">
+     RFoT.cp_als_numpy package
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../RFoT.utilities.html">
+     RFoT.utilities package
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../modules.html">
+   RFoT
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -91,8 +118,8 @@
     <a class="reference internal" href="../../../RFoT.html">
      RFoT package
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-    <label for="toctree-checkbox-2">
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -184,7 +211,11 @@
               <div>
                 
   <h1>Source code for RFoT.clustering.gmm</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GaussianMixture</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Gaussian Mixture Model clustering.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GaussianMixture</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -203,9 +234,25 @@
 <div class="viewcode-block" id="GaussianMixture_find_n"><a class="viewcode-back" href="../../../RFoT.clustering.html#RFoT.clustering.gmm.GaussianMixture_find_n">[docs]</a><span class="k">def</span> <span class="nf">GaussianMixture_find_n</span><span class="p">(</span><span class="n">M_r</span><span class="p">,</span> <span class="n">min_</span><span class="p">,</span> <span class="n">max_</span><span class="p">,</span> <span class="n">random_state</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Finds the optimal number of clusters using BIC score for component r of KRUSKAL tensor M_i.</span>
-<span class="sd">    Parameters:</span>
-<span class="sd">        M_r: dict, KRUSKAL tensor&#39;s first latent factor.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    M_r : np.ndarray</span>
+<span class="sd">        latent factor.</span>
+<span class="sd">    min_ : int</span>
+<span class="sd">        Min clusters.</span>
+<span class="sd">    max_ : int</span>
+<span class="sd">        Max clusters.</span>
+<span class="sd">    random_state : int</span>
+<span class="sd">        Random state.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    int</span>
+<span class="sd">        Number of clusers.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
+
 
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">M_r</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">1</span>
@@ -236,9 +283,21 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Extracts the cluster labels for KRUSKAL tensor M_r for n clusters.</span>
 <span class="sd">    M_r is the rth component of the KRUSKAL tensor M_i.</span>
-<span class="sd">    Parameters:</span>
-<span class="sd">        M_r: dict, KRUSKAL tensor&#39;s first latent factor.</span>
-<span class="sd">        n: int, number of clusters.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    M_r : np.ndarray</span>
+<span class="sd">        latent factor.</span>
+<span class="sd">    n : int</span>
+<span class="sd">        Number of clusters.</span>
+<span class="sd">    random_state : int</span>
+<span class="sd">        Random state.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    np.ndarray</span>
+<span class="sd">        Labels.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">M_r</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>

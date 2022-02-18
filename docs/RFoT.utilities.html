@@ -35,6 +35,7 @@
     <script src="_static/sphinx-book-theme.9d8b4a8b9bb19db25eeaddc40d639ba2.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="RFoT" href="modules.html" />
     <link rel="prev" title="RFoT.cp_als_numpy package" href="RFoT.cp_als_numpy.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="Python">
@@ -79,11 +80,38 @@
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="modules.html">
-   RFoT
+  <a class="reference internal" href="RFoT.html">
+   RFoT package
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="RFoT.clustering.html">
+     RFoT.clustering package
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="RFoT.cp_als_numpy.html">
+     RFoT.cp_als_numpy package
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     RFoT.utilities package
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="modules.html">
+   RFoT
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -92,8 +120,8 @@
     <a class="reference internal" href="RFoT.html">
      RFoT package
     </a>
-    <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-    <label for="toctree-checkbox-2">
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -289,27 +317,48 @@
 <span class="sig-prename descclassname"><span class="pre">RFoT.utilities.bin_columns.</span></span><span class="sig-name descname"><span class="pre">bin_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_max_map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dont_bin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/RFoT/utilities/bin_columns.html#bin_columns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RFoT.utilities.bin_columns.bin_columns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Maps the tensor dimensions to bins for indexing the tensor.
 The number of bins is specified by the number of unique entries
-for the given dimension in the dataset, and scaled if specified.
-:param df: pd.DataFrame,
-:param dont_bin: str, name of the feature to not create bins.</p>
-<blockquote>
-<div><p>Used to avoid mapping feature values to bins for the
-feature used as the tensor entry.</p>
-</div></blockquote>
+for the given dimension in the dataset, and scaled if specified.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) -- Dataset X.</p></li>
+<li><p><strong>bin_max_map</strong> (<em>dict</em>) -- Determines the maximum dimension size.</p></li>
+<li><p><strong>dont_bin</strong> (<em>[</em><em>]</em>) -- List of column indixes from X to not to bin.</p></li>
+<li><p><strong>bin_scale</strong> (<em>float</em><em>, </em><em>optional</em>) -- Size of the dimension. The default is 1.0.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>df</strong> -- Dataset X with binned features.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
 <div class="section" id="module-RFoT.utilities.build_tensor">
 <span id="rfot-utilities-build-tensor-module"></span><h2>RFoT.utilities.build_tensor module<a class="headerlink" href="#module-RFoT.utilities.build_tensor" title="Permalink to this headline">¶</a></h2>
+<p>Builds a tensor in COO format.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="RFoT.utilities.build_tensor.setup_sptensor">
 <span class="sig-prename descclassname"><span class="pre">RFoT.utilities.build_tensor.</span></span><span class="sig-name descname"><span class="pre">setup_sptensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/RFoT/utilities/build_tensor.html#setup_sptensor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RFoT.utilities.build_tensor.setup_sptensor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets up sparse tensor specified by non-zero coordinates and list of values for each
-coordinate entry (index) in the tensor.
-:param tensor_option: dict, dictionary of tensor configuration</p>
-<blockquote>
-<div><p>which gives dimensions, rank, and entry feature names.</p>
-</div></blockquote>
+coordinate entry (index) in the tensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) -- Dataset X.</p></li>
+<li><p><strong>tensor_option</strong> (<em>dict</em>) -- Dictionary of tensor configuration defining the column indices to be dimensions, tensor rank, and entry.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dicitonary with non-zero coordinates and non-zero values.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -324,11 +373,32 @@ coordinate entry (index) in the tensor.
 </div>
 <div class="section" id="module-RFoT.utilities.sample_tensor_configs">
 <span id="rfot-utilities-sample-tensor-configs-module"></span><h2>RFoT.utilities.sample_tensor_configs module<a class="headerlink" href="#module-RFoT.utilities.sample_tensor_configs" title="Permalink to this headline">¶</a></h2>
+<p>Samples random tensor configurations.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="RFoT.utilities.sample_tensor_configs.setup_tensors">
 <span class="sig-prename descclassname"><span class="pre">RFoT.utilities.sample_tensor_configs.</span></span><span class="sig-name descname"><span class="pre">setup_tensors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min_dimensions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_dimensions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_estimators</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rank</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_rank</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_rank</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/RFoT/utilities/sample_tensor_configs.html#setup_tensors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#RFoT.utilities.sample_tensor_configs.setup_tensors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Samples random set of tensor configurations specified by the dimension
 names, entry feature name, and the rank.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>min_dimensions</strong> (<em>int</em>) -- Minimum number of dimensions.</p></li>
+<li><p><strong>max_dimensions</strong> (<em>int</em>) -- Maximum number of dimensions.</p></li>
+<li><p><strong>X</strong> (<em>pd.DataFrame</em>) -- Dataset X.</p></li>
+<li><p><strong>random_state</strong> (<em>int</em>) -- random state seed.</p></li>
+<li><p><strong>n_estimators</strong> (<em>int</em>) -- Number of random tensors.</p></li>
+<li><p><strong>rank</strong> (<em>int</em>) -- Tensor rank. Could ne &quot;random&quot;.</p></li>
+<li><p><strong>min_rank</strong> (<em>int</em>) -- Minimum tensor rank.</p></li>
+<li><p><strong>max_rank</strong> (<em>int</em>) -- Maximum tensor rank.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>tensor_setups</strong> -- Dictionary of random tensor setups.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -349,6 +419,13 @@ names, entry feature name, and the rank.</p>
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">RFoT.cp_als_numpy package</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="modules.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">RFoT</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             

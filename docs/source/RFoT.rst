@@ -17,6 +17,13 @@ Submodules
 RFoT.RFoT module
 ----------------
 
+.. currentmodule:: RFoT.RFoT
+
+.. autosummary::
+
+   RFoT.__init__
+   RFoT.predict
+   
 .. automodule:: RFoT.RFoT
    :members:
    :undoc-members:

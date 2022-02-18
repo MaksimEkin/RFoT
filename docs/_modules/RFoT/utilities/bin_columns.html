@@ -78,11 +78,38 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../../modules.html">
-   RFoT
+  <a class="reference internal" href="../../../RFoT.html">
+   RFoT package
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../RFoT.clustering.html">
+     RFoT.clustering package
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../RFoT.cp_als_numpy.html">
+     RFoT.cp_als_numpy package
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../RFoT.utilities.html">
+     RFoT.utilities package
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../modules.html">
+   RFoT
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -91,8 +118,8 @@
     <a class="reference internal" href="../../../RFoT.html">
      RFoT package
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-    <label for="toctree-checkbox-2">
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -192,12 +219,25 @@
 <span class="sd">    Maps the tensor dimensions to bins for indexing the tensor.</span>
 <span class="sd">    The number of bins is specified by the number of unique entries</span>
 <span class="sd">    for the given dimension in the dataset, and scaled if specified.</span>
-<span class="sd">    Parameters:</span>
-<span class="sd">        df: pd.DataFrame,</span>
-<span class="sd">        dont_bin: str, name of the feature to not create bins.</span>
-<span class="sd">                  Used to avoid mapping feature values to bins for the</span>
-<span class="sd">                  feature used as the tensor entry.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df : pd.DataFrame</span>
+<span class="sd">        Dataset X.</span>
+<span class="sd">    bin_max_map : dict</span>
+<span class="sd">        Determines the maximum dimension size.</span>
+<span class="sd">    dont_bin : []</span>
+<span class="sd">        List of column indixes from X to not to bin.</span>
+<span class="sd">    bin_scale : float, optional</span>
+<span class="sd">        Size of the dimension. The default is 1.0.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    df : pd.DataFrame</span>
+<span class="sd">        Dataset X with binned features.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">dimension_ranges</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
     <span class="n">names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
@@ -208,10 +248,10 @@
 
         <span class="k">if</span> <span class="n">range_</span> <span class="o">&gt;</span> <span class="n">bin_max_map</span><span class="p">[</span><span class="s2">&quot;max&quot;</span><span class="p">]:</span>
             <span class="n">range_</span> <span class="o">=</span> <span class="n">bin_max_map</span><span class="p">[</span><span class="s2">&quot;bin&quot;</span><span class="p">]</span>
-            
+
         <span class="k">if</span> <span class="n">range_</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">range_</span> <span class="o">=</span> <span class="mi">1</span>
-            
+
         <span class="n">df</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">dim</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">range_</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">df</span></div>

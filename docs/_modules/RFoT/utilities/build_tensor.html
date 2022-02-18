@@ -78,11 +78,38 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../../modules.html">
-   RFoT
+  <a class="reference internal" href="../../../RFoT.html">
+   RFoT package
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../RFoT.clustering.html">
+     RFoT.clustering package
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../RFoT.cp_als_numpy.html">
+     RFoT.cp_als_numpy package
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../RFoT.utilities.html">
+     RFoT.utilities package
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../modules.html">
+   RFoT
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -91,8 +118,8 @@
     <a class="reference internal" href="../../../RFoT.html">
      RFoT package
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-    <label for="toctree-checkbox-2">
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -184,17 +211,31 @@
               <div>
                 
   <h1>Source code for RFoT.utilities.build_tensor</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Builds a tensor in COO format.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <div class="viewcode-block" id="setup_sptensor"><a class="viewcode-back" href="../../../RFoT.utilities.html#RFoT.utilities.build_tensor.setup_sptensor">[docs]</a><span class="k">def</span> <span class="nf">setup_sptensor</span><span class="p">(</span><span class="n">df</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">tensor_option</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Sets up sparse tensor specified by non-zero coordinates and list of values for each </span>
+<span class="sd">    Sets up sparse tensor specified by non-zero coordinates and list of values for each</span>
 <span class="sd">    coordinate entry (index) in the tensor.</span>
-<span class="sd">    Parameters:</span>
-<span class="sd">        tensor_option: dict, dictionary of tensor configuration</span>
-<span class="sd">                       which gives dimensions, rank, and entry feature names.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df : pd.DataFrame</span>
+<span class="sd">        Dataset X.</span>
+<span class="sd">    tensor_option : dict</span>
+<span class="sd">        Dictionary of tensor configuration defining the column indices to be dimensions, tensor rank, and entry.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict</span>
+<span class="sd">        Dicitonary with non-zero coordinates and non-zero values.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">tensor_dict</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">nnz_coords</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># coordinates of the non-zero values</span>
     <span class="n">nnz_values</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># non-zero values for each coordinate</span>
@@ -207,22 +248,22 @@
         <span class="n">subscript</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tensor_option</span><span class="p">[</span><span class="s2">&quot;dimensions&quot;</span><span class="p">])):</span>
             <span class="n">subscript</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">key</span><span class="p">[</span><span class="n">ii</span><span class="p">])))</span>
-        
+
         <span class="n">subs_key</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">subscript</span><span class="p">)</span>
-        
+
         <span class="k">if</span> <span class="n">subs_key</span> <span class="ow">in</span> <span class="n">tensor_dict</span><span class="p">:</span>
             <span class="n">tensor_dict</span><span class="p">[</span><span class="n">subs_key</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">tensor_dict</span><span class="p">[</span><span class="n">subs_key</span><span class="p">]</span> <span class="o">+</span> <span class="n">key</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">tensor_dict</span><span class="p">[</span><span class="n">subs_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># tensor_option[&quot;entry&quot;]</span>
-          
+
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">tensor_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">subscript_str</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
         <span class="n">subscript</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">sub</span> <span class="ow">in</span> <span class="n">subscript_str</span><span class="p">:</span>
             <span class="n">subscript</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">sub</span><span class="p">))</span>
-        
+
         <span class="n">nnz_coords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subscript</span><span class="p">)</span>
-        <span class="n">nnz_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> 
+        <span class="n">nnz_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;nnz_coords&quot;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nnz_coords</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int&quot;</span><span class="p">),</span> <span class="s2">&quot;nnz_values&quot;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nnz_values</span><span class="p">)}</span></div>
 </pre></div>
