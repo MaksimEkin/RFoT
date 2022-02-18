@@ -1,3 +1,7 @@
+"""
+Gaussian Mixture Model clustering.
+"""
+
 from sklearn.mixture import GaussianMixture
 from scipy import stats
 import numpy as np
@@ -17,9 +21,25 @@ def gmm_cluster(params):
 def GaussianMixture_find_n(M_r, min_, max_, random_state):
     """
     Finds the optimal number of clusters using BIC score for component r of KRUSKAL tensor M_i.
-    Parameters:
-        M_r: dict, KRUSKAL tensor's first latent factor.
+
+    Parameters
+    ----------
+    M_r : np.ndarray
+        latent factor.
+    min_ : int
+        Min clusters.
+    max_ : int
+        Max clusters.
+    random_state : int
+        Random state.
+
+    Returns
+    -------
+    int
+        Number of clusers.
+
     """
+
 
     if len(np.unique(M_r)) == 1:
         return 1
@@ -50,9 +70,21 @@ def GaussianMixture_get_labels(M_r, n, random_state):
     """
     Extracts the cluster labels for KRUSKAL tensor M_r for n clusters.
     M_r is the rth component of the KRUSKAL tensor M_i.
-    Parameters:
-        M_r: dict, KRUSKAL tensor's first latent factor.
-        n: int, number of clusters.
+
+    Parameters
+    ----------
+    M_r : np.ndarray
+        latent factor.
+    n : int
+        Number of clusters.
+    random_state : int
+        Random state.
+
+    Returns
+    -------
+    np.ndarray
+        Labels.
+
     """
     if len(M_r) == 1:
         return [0]

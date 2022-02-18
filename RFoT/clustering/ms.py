@@ -1,10 +1,28 @@
 # -*- coding: utf-8 -*-
+"""
+Mean Shift clustering
+"""
 from sklearn.cluster import MeanShift, estimate_bandwidth
 import numpy as np
 
 
 def ms_cluster(params):
-    """"""
+    """
+    Performs MS clustering in the latent factor.
+
+    Parameters
+    ----------
+    params : dict
+        Dictionary with the latent factor and random state.
+
+    Returns
+    -------
+    np.ndarray
+        Cluster labels.
+    int
+        Number of clusters.
+
+    """
 
     M_r = params["M_k"]
     random_state = params["random_state"]
