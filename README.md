@@ -106,6 +106,17 @@ print(f1)
 - requests>=2.25.1
 - spacy
 
+## How to Cite RFoT?
+- Eren, M. E., Nicholas, C., McDonald, R., and Hamer, R. (2021). Random Forest of Tensors (RFoT). Presented at the 12th Annual Malware Technical Exchange Meeting, Online, 2021.
+```latex
+@misc{eren2021RFoT,
+      title={Random Forest of Tensors (RFoT)}, 
+      author={M. E. {Eren} and C. {Nicholas} and R. {McDonald} and C. {Hamer}},
+      year={2021},
+      note={Presented at the 12th Annual Malware Technical Exchange Meeting, Online, 2021}
+}
+```
+
 ## Developer Test Suite
 Developer test suites are located under [```tests/```](tests/) directory. Tests can be ran from this folder using ```python -m unittest *```.
 
