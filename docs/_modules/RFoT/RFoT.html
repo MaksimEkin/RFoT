@@ -1,0 +1,725 @@
+
+<!DOCTYPE html>
+
+<html lang="Python">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RFoT.RFoT &#8212; RFoT v0.0.1 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=84ace793992934648b4de8eed757e5a2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx-book-theme.9d8b4a8b9bb19db25eeaddc40d639ba2.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="Python">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<div class="col-12 col-md-3 bd-sidebar site-navigation " id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">RFoT v0.0.1 documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contents:
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../modules.html">
+   RFoT
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../RFoT.html">
+     RFoT package
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../RFoT.clustering.html">
+       RFoT.clustering package
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../RFoT.cp_als_numpy.html">
+       RFoT.cp_als_numpy package
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../RFoT.utilities.html">
+       RFoT.utilities package
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<!-- This is an invisible pixel that we watch to see if we've scrolled. -->
+<div class="sbt-scroll-pixel-helper"></div>
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            <div class="topbar-left">
+                
+                <label class="nav-toggle-button" for="__navigation">
+                    <div class="visually-hidden">Toggle navigation</div>
+                    <i class="fas fa-bars"></i>
+                </label>
+                
+            </div>
+            
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <h1>Source code for RFoT.RFoT</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="nn">.cp_als_numpy.cp_als</span> <span class="kn">import</span> <span class="n">CP_ALS</span>
+<span class="kn">from</span> <span class="nn">pyCP_APR</span> <span class="kn">import</span> <span class="n">CP_APR</span>
+
+<span class="kn">from</span> <span class="nn">.utilities.bin_columns</span> <span class="kn">import</span> <span class="n">bin_columns</span>
+<span class="kn">from</span> <span class="nn">.utilities.sample_tensor_configs</span> <span class="kn">import</span> <span class="n">setup_tensors</span>
+<span class="kn">from</span> <span class="nn">.utilities.build_tensor</span> <span class="kn">import</span> <span class="n">setup_sptensor</span>
+<span class="kn">from</span> <span class="nn">.utilities.istarmap</span> <span class="kn">import</span> <span class="n">istarmap</span>
+
+<span class="kn">from</span> <span class="nn">.clustering.gmm</span> <span class="kn">import</span> <span class="n">gmm_cluster</span>
+<span class="kn">from</span> <span class="nn">.clustering.ms</span> <span class="kn">import</span> <span class="n">ms_cluster</span>
+<span class="kn">from</span> <span class="nn">.clustering.component</span> <span class="kn">import</span> <span class="n">component_cluster</span>
+
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="kn">import</span> <span class="nn">tqdm</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">operator</span>
+
+
+<div class="viewcode-block" id="RFoT"><a class="viewcode-back" href="../../RFoT.html#RFoT.RFoT.RFoT">[docs]</a><span class="k">class</span> <span class="nc">RFoT</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">max_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">min_rank</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">max_rank</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+        <span class="n">min_dimensions</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">max_dimensions</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">min_cluster_search</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">max_cluster_search</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+        <span class="n">component_purity_tol</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">cluster_purity_tol</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+        <span class="n">n_estimators</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>
+        <span class="n">rank</span><span class="o">=</span><span class="s2">&quot;random&quot;</span><span class="p">,</span>
+        <span class="n">clustering</span><span class="o">=</span><span class="s2">&quot;gmm&quot;</span><span class="p">,</span>
+        <span class="n">decomp</span><span class="o">=</span><span class="s2">&quot;cp_als&quot;</span><span class="p">,</span>
+        <span class="n">zero_tol</span><span class="o">=</span><span class="mf">1e-08</span><span class="p">,</span>
+        <span class="n">dont_bin</span><span class="o">=</span><span class="nb">list</span><span class="p">(),</span>
+        <span class="n">bin_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">bin_entry</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">bin_max_map</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">10</span> <span class="o">**</span> <span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;bin&quot;</span><span class="p">:</span> <span class="mi">10</span> <span class="o">**</span> <span class="mi">3</span><span class="p">},</span>
+        <span class="n">tol</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span>
+        <span class="n">n_iters</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">decomp_verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">fixsigns</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+        <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">n_gpus</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">gpu_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span> <span class="o">=</span> <span class="n">max_depth</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_rank</span> <span class="o">=</span> <span class="n">min_rank</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_rank</span> <span class="o">=</span> <span class="n">max_rank</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_dimensions</span> <span class="o">=</span> <span class="n">min_dimensions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_dimensions</span> <span class="o">=</span> <span class="n">max_dimensions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_cluster_search</span> <span class="o">=</span> <span class="n">min_cluster_search</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_cluster_search</span> <span class="o">=</span> <span class="n">max_cluster_search</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">component_purity_tol</span> <span class="o">=</span> <span class="n">component_purity_tol</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cluster_purity_tol</span> <span class="o">=</span> <span class="n">cluster_purity_tol</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span> <span class="o">=</span> <span class="n">n_estimators</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rank</span> <span class="o">=</span> <span class="n">rank</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clustering</span> <span class="o">=</span> <span class="n">clustering</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decomp</span> <span class="o">=</span> <span class="n">decomp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zero_tol</span> <span class="o">=</span> <span class="n">zero_tol</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dont_bin</span> <span class="o">=</span> <span class="n">dont_bin</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bin_scale</span> <span class="o">=</span> <span class="n">bin_scale</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bin_entry</span> <span class="o">=</span> <span class="n">bin_entry</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bin_max_map</span> <span class="o">=</span> <span class="n">bin_max_map</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tol</span> <span class="o">=</span> <span class="n">tol</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_iters</span> <span class="o">=</span> <span class="n">n_iters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decomp_verbose</span> <span class="o">=</span> <span class="n">decomp_verbose</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fixsigns</span> <span class="o">=</span> <span class="n">fixsigns</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_gpus</span> <span class="o">=</span> <span class="n">n_gpus</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gpu_id</span> <span class="o">=</span> <span class="n">gpu_id</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">allowed_decompositions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;cp_als&quot;</span><span class="p">,</span> <span class="s2">&quot;cp_apr&quot;</span><span class="p">,</span> <span class="s2">&quot;cp_apr_gpu&quot;</span><span class="p">,</span> <span class="s2">&quot;debug&quot;</span><span class="p">]</span>
+
+
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cluster_purity_tol</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">component_purity_tol</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="p">),</span> <span class="s2">&quot;Cluster purity and/or component purity must be &gt;0&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">clustering</span> <span class="o">==</span> <span class="s2">&quot;gmm&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cluster</span> <span class="o">=</span> <span class="n">gmm_cluster</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">clustering</span> <span class="o">==</span> <span class="s2">&quot;ms&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cluster</span> <span class="o">=</span> <span class="n">ms_cluster</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">clustering</span> <span class="o">==</span> <span class="s2">&quot;component&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cluster</span> <span class="o">=</span> <span class="n">component_cluster</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Unknown clustering method is chosen.&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="RFoT.get_params"><a class="viewcode-back" href="../../RFoT.html#RFoT.RFoT.RFoT.get_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RFoT.set_params"><a class="viewcode-back" href="../../RFoT.html#RFoT.RFoT.RFoT.set_params">[docs]</a>    <span class="k">def</span> <span class="nf">set_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">parameters</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">parameters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="RFoT.predict"><a class="viewcode-back" href="../../RFoT.html#RFoT.RFoT.RFoT.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+
+        <span class="c1">#</span>
+        <span class="c1"># Input verification</span>
+        <span class="c1">#</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;No unknown samples found. Label unknown with -1 in y.&quot;</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="p">),</span> <span class="s2">&quot;Do not use -2 as the label as it is internally used!&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span>
+            <span class="n">y</span>
+        <span class="p">),</span> <span class="s2">&quot;Number of samples does not match the number of labels!&quot;</span>
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="p">),</span> <span class="s2">&quot;No unknown samples found! Use -1 in labels to mark the unknown samples.&quot;</span>
+
+        <span class="c1">#</span>
+        <span class="c1"># Setup</span>
+        <span class="c1">#</span>
+
+        <span class="c1"># add column to X to serve as sample IDs</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># convert the features matrix into dataframe</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">y_pred_flag</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="n">X_curr</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">y_curr</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">curr_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+
+        <span class="c1">#</span>
+        <span class="c1"># Main loop, depth</span>
+        <span class="c1">#</span>
+        <span class="k">for</span> <span class="n">depth</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span><span class="p">):</span>
+            <span class="n">n_abstaining</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="n">y_pred_curr</span><span class="p">,</span> <span class="n">predicted_indices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tree</span><span class="p">(</span><span class="n">X_curr</span><span class="p">,</span> <span class="n">y_curr</span><span class="p">,</span> <span class="n">depth</span><span class="p">)</span>
+            <span class="n">y_pred</span><span class="p">[</span><span class="n">curr_indices</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_pred_curr</span>
+            <span class="n">y_pred_flag</span><span class="p">[</span><span class="n">curr_indices</span><span class="p">[</span><span class="n">predicted_indices</span><span class="p">]]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+            <span class="n">n_abstaining_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="c1"># no change in abstaining predictions, no need to continue</span>
+            <span class="k">if</span> <span class="n">n_abstaining_new</span> <span class="o">==</span> <span class="n">n_abstaining</span><span class="p">:</span>
+                <span class="k">break</span>
+
+            <span class="c1"># form the data for the next depth</span>
+            <span class="n">curr_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">y_pred_flag</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+            <span class="n">X_curr</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">curr_indices</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">X_curr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_curr</span><span class="p">))</span>
+            <span class="n">y_curr</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">curr_indices</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">y_pred</span></div>
+
+    <span class="k">def</span> <span class="nf">_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">depth</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+
+        <span class="c1"># unique classes</span>
+        <span class="n">classes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+        <span class="n">classes</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">classes</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="n">classes</span>
+
+        <span class="c1">#</span>
+        <span class="c1"># Sample the first set of tensor options</span>
+        <span class="c1">#</span>
+        <span class="n">tensor_configs</span> <span class="o">=</span> <span class="n">setup_tensors</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">min_dimensions</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">max_dimensions</span><span class="p">,</span>
+            <span class="n">X</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">+</span> <span class="n">depth</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">min_rank</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">max_rank</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1">#</span>
+        <span class="c1"># Work on each random tensor configuration</span>
+        <span class="c1">#</span>
+        <span class="n">tensor_votes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="n">tasks</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">config</span> <span class="ow">in</span> <span class="n">tensor_configs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">decomp</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;cp_apr_gpu&quot;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_gpus</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">tasks</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">config</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gpu_id</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">tasks</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">config</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">idx</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">n_gpus</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">tasks</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">config</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+            <span class="n">idx</span><span class="o">+=</span><span class="mi">1</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">decomp</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;cp_als&quot;</span><span class="p">,</span> <span class="s2">&quot;cp_apr&quot;</span><span class="p">]:</span>
+            <span class="n">pool</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">tv</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span>
+                <span class="n">pool</span><span class="o">.</span><span class="n">istarmap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_tensor_votes</span><span class="p">,</span> <span class="n">tasks</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+                <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">tasks</span><span class="p">),</span>
+                <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">),</span>
+            <span class="p">):</span>
+                <span class="n">tensor_votes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tv</span><span class="p">)</span>
+        
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">decomp</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;cp_apr_gpu&quot;</span><span class="p">]:</span>
+            <span class="c1">#pool = Pool(processes=self.n_jobs)</span>
+            <span class="c1">#for tv in tqdm.tqdm(</span>
+            <span class="c1">#    pool.istarmap(self._get_tensor_votes, tasks, chunksize=1),</span>
+            <span class="c1">#    total=len(tasks),</span>
+            <span class="c1">#    disable=not (self.verbose),</span>
+            <span class="c1">#):</span>
+            <span class="c1">#    tensor_votes.append(tv)</span>
+            
+            <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">tasks</span><span class="p">),</span> <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">)):</span>
+                <span class="n">tv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_tensor_votes</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">task</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="o">=</span><span class="n">task</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">task</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">gpu_id</span><span class="o">=</span><span class="n">task</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+                <span class="n">tensor_votes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tv</span><span class="p">)</span>
+        
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">decomp</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;debug&quot;</span><span class="p">]:</span>
+            <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">tasks</span><span class="p">),</span> <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">)):</span>
+                <span class="n">tv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_tensor_votes</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">task</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="o">=</span><span class="n">task</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">task</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+                <span class="n">tensor_votes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tv</span><span class="p">)</span>
+
+        <span class="c1">#</span>
+        <span class="c1"># Combine votes from each tensor</span>
+        <span class="c1">#</span>
+        <span class="n">votes</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">tv</span> <span class="ow">in</span> <span class="n">tensor_votes</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">sample_idx</span><span class="p">,</span> <span class="n">sample_votes</span> <span class="ow">in</span> <span class="n">tv</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">sample_idx</span> <span class="ow">in</span> <span class="n">votes</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sample_votes</span><span class="p">):</span>
+                        <span class="n">votes</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">+=</span> <span class="n">v</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">votes</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_votes</span>
+
+        <span class="c1">#</span>
+        <span class="c1"># Max vote on the results of current depth</span>
+        <span class="c1">#</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">votes</span> <span class="o">=</span> <span class="n">votes</span>
+        <span class="n">predicted_indices</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">sample_idx</span><span class="p">,</span> <span class="n">sample_votes</span> <span class="ow">in</span> <span class="n">votes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            
+            <span class="c1"># no decision was made (50-50)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">sample_votes</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">y_pred</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+                <span class="k">continue</span>
+                
+            <span class="n">max_value</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">sample_votes</span><span class="p">)</span>
+            <span class="n">max_index</span> <span class="o">=</span> <span class="n">sample_votes</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">max_value</span><span class="p">)</span>
+            <span class="n">y_pred</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_index</span>
+            <span class="n">predicted_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sample_idx</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">predicted_indices</span>
+
+    <span class="k">def</span> <span class="nf">_get_tensor_votes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">gpu_id</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        
+        <span class="c1">#</span>
+        <span class="c1"># setup backend</span>
+        <span class="c1">#</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">decomp</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;cp_als&quot;</span><span class="p">,</span> <span class="s2">&quot;debug&quot;</span><span class="p">]:</span>
+            <span class="n">backend</span> <span class="o">=</span> <span class="n">CP_ALS</span><span class="p">(</span>
+                <span class="n">tol</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tol</span><span class="p">,</span>
+                <span class="n">n_iters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_iters</span><span class="p">,</span>
+                <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">decomp_verbose</span><span class="p">,</span>
+                <span class="n">fixsigns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fixsigns</span><span class="p">,</span>
+                <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">decomp</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;cp_apr&quot;</span><span class="p">]:</span>
+            <span class="n">backend</span> <span class="o">=</span> <span class="n">CP_APR</span><span class="p">(</span>
+                <span class="n">n_iters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_iters</span><span class="p">,</span>
+                <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">decomp_verbose</span><span class="p">,</span>
+                <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">decomp</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;cp_apr_gpu&quot;</span><span class="p">]:</span>
+            <span class="n">backend</span> <span class="o">=</span> <span class="n">CP_APR</span><span class="p">(</span>
+                <span class="n">n_iters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_iters</span><span class="p">,</span>
+                <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">decomp_verbose</span><span class="p">,</span>
+                <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span>
+                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;torch&#39;</span><span class="p">,</span>
+                <span class="n">device</span><span class="o">=</span><span class="s1">&#39;gpu&#39;</span><span class="p">,</span>
+                <span class="n">device_num</span><span class="o">=</span><span class="n">gpu_id</span><span class="p">,</span>
+                <span class="n">return_type</span><span class="o">=</span><span class="s1">&#39;numpy&#39;</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                <span class="s2">&quot;Unknown tensor decomposition method. Choose from: &quot;</span>
+                <span class="o">+</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">allowed_decompositions</span><span class="p">)</span>
+            <span class="p">)</span>
+        
+
+        <span class="c1"># original indices</span>
+        <span class="n">all_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+        <span class="n">votes</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1">#</span>
+        <span class="c1"># bin the dimensons</span>
+        <span class="c1">#</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bin_entry</span><span class="p">:</span>
+            <span class="n">curr_entry</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;entry&quot;</span><span class="p">]</span>
+            <span class="n">curr_dims</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;dimensions&quot;</span><span class="p">]</span>
+            <span class="n">curr_df</span> <span class="o">=</span> <span class="n">bin_columns</span><span class="p">(</span>
+                <span class="n">X</span><span class="p">[</span><span class="n">curr_dims</span> <span class="o">+</span> <span class="p">[</span><span class="n">curr_entry</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">bin_max_map</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dont_bin</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">bin_scale</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">curr_entry</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;entry&quot;</span><span class="p">]</span>
+            <span class="n">curr_dims</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;dimensions&quot;</span><span class="p">]</span>
+            <span class="n">curr_df</span> <span class="o">=</span> <span class="n">bin_columns</span><span class="p">(</span>
+                <span class="n">X</span><span class="p">[</span><span class="n">curr_dims</span> <span class="o">+</span> <span class="p">[</span><span class="n">curr_entry</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">bin_max_map</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dont_bin</span> <span class="o">+</span> <span class="p">[</span><span class="n">curr_entry</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">bin_scale</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="c1">#</span>
+        <span class="c1"># Factorize the current tensor</span>
+        <span class="c1">#</span>
+        <span class="n">curr_tensor</span> <span class="o">=</span> <span class="n">setup_sptensor</span><span class="p">(</span><span class="n">curr_df</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+
+        <span class="n">decomp</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+            <span class="n">coords</span> <span class="o">=</span> <span class="n">curr_tensor</span><span class="p">[</span><span class="s2">&quot;nnz_coords&quot;</span><span class="p">],</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="n">curr_tensor</span><span class="p">[</span><span class="s2">&quot;nnz_values&quot;</span><span class="p">],</span>
+            <span class="n">rank</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;rank&quot;</span><span class="p">]),</span>
+        <span class="p">)</span>
+        <span class="k">del</span> <span class="n">backend</span>
+        <span class="c1"># use the latent factor representing the samples (mode 0)</span>
+        <span class="n">latent_factor_0</span> <span class="o">=</span> <span class="n">decomp</span><span class="p">[</span><span class="s2">&quot;Factors&quot;</span><span class="p">][</span><span class="s2">&quot;0&quot;</span><span class="p">]</span>
+
+        <span class="c1">#</span>
+        <span class="c1"># Work on each component</span>
+        <span class="c1">#</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">latent_factor_0</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+
+            <span class="n">Mk</span> <span class="o">=</span> <span class="n">latent_factor_0</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span>
+
+            <span class="c1">#</span>
+            <span class="c1"># mask out elements close to 0</span>
+            <span class="c1">#</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">Mk</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">zero_tol</span><span class="p">)</span>
+            <span class="n">M_m</span> <span class="o">=</span> <span class="n">Mk</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+            <span class="n">curr_y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+            <span class="n">known_sample_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+            <span class="n">unknown_sample_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+            
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">curr_y</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="c1">#</span>
+            <span class="c1"># Capture clusters from current component</span>
+            <span class="c1">#</span>
+            <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;M_k&quot;</span><span class="p">:</span> <span class="n">M_m</span><span class="p">,</span>
+                <span class="s2">&quot;min_cluster_search&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_cluster_search</span><span class="p">,</span>
+                <span class="s2">&quot;max_cluster_search&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_cluster_search</span><span class="p">,</span>
+                <span class="s2">&quot;random_state&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span>
+            <span class="p">}</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">cluster_labels</span><span class="p">,</span> <span class="n">n_opt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cluster</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="c1"># error when clustering this component, skip</span>
+                <span class="k">continue</span>
+                
+            <span class="c1">#</span>
+            <span class="c1"># Calculate Component Quality</span>
+            <span class="c1">#</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">component_purity_tol</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">purity_score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_component_quality</span><span class="p">(</span>
+                    <span class="n">n_opt</span><span class="p">,</span> <span class="n">cluster_labels</span><span class="p">,</span> <span class="n">known_sample_indices</span><span class="p">,</span> <span class="n">curr_y</span>
+                <span class="p">)</span>
+
+                <span class="c1"># poor component quality, poor purity among clusters, skip component</span>
+                <span class="k">if</span> <span class="n">purity_score</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">component_purity_tol</span><span class="p">:</span>
+                    <span class="k">continue</span>
+      
+            <span class="c1">#</span>
+            <span class="c1"># Semi-supervised voting</span>
+            <span class="c1">#</span>
+            <span class="n">votes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_cluster_votes</span><span class="p">(</span>
+                <span class="n">n_opt</span><span class="p">,</span>
+                <span class="n">cluster_labels</span><span class="p">,</span>
+                <span class="n">known_sample_indices</span><span class="p">,</span>
+                <span class="n">unknown_sample_indices</span><span class="p">,</span>
+                <span class="n">curr_y</span><span class="p">,</span>
+                <span class="n">all_indices</span><span class="p">,</span>
+                <span class="n">mask</span><span class="p">,</span>
+                <span class="n">votes</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">votes</span>
+
+    <span class="k">def</span> <span class="nf">_get_cluster_votes</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">n_opt</span><span class="p">,</span>
+        <span class="n">cluster_labels</span><span class="p">,</span>
+        <span class="n">known_sample_indices</span><span class="p">,</span>
+        <span class="n">unknown_sample_indices</span><span class="p">,</span>
+        <span class="n">curr_y</span><span class="p">,</span>
+        <span class="n">all_indices</span><span class="p">,</span>
+        <span class="n">mask</span><span class="p">,</span>
+        <span class="n">votes</span><span class="p">,</span>
+    <span class="p">):</span>
+        
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_opt</span><span class="p">):</span>
+            
+            <span class="c1"># current cluster sample informations</span>
+            <span class="n">cluster_c_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">cluster_labels</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+   
+            <span class="c1"># empty cluster</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cluster_c_indices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="n">cluster_c_known_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">intersect1d</span><span class="p">(</span>
+                <span class="n">known_sample_indices</span><span class="p">,</span> <span class="n">cluster_c_indices</span>
+            <span class="p">)</span>
+            <span class="n">cluster_c_unknown_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">intersect1d</span><span class="p">(</span>
+                <span class="n">unknown_sample_indices</span><span class="p">,</span> <span class="n">cluster_c_indices</span>
+            <span class="p">)</span>
+            <span class="n">cluster_c_known_labels</span> <span class="o">=</span> <span class="n">curr_y</span><span class="p">[</span><span class="n">cluster_c_known_indices</span><span class="p">]</span>
+            
+            <span class="c1"># everyone is known in the cluster</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cluster_c_unknown_indices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># no known samples in the cluster - abstaining prediction</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cluster_c_known_labels</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># count the known labels in the cluster</span>
+            <span class="n">cluster_c_known_label_counts</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">Counter</span><span class="p">(</span><span class="n">cluster_c_known_labels</span><span class="p">))</span>
+            
+            <span class="c1"># cluster quality</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cluster_purity_tol</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">cluster_quality_score</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+                    <span class="n">cluster_c_known_label_counts</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+                <span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">cluster_c_known_label_counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+                <span class="c1"># cluster quality is poor, skip this cluster</span>
+                <span class="k">if</span> <span class="n">cluster_quality_score</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">cluster_purity_tol</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+            <span class="c1"># vote</span>
+            <span class="n">vote_label</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+                <span class="n">cluster_c_known_label_counts</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">operator</span><span class="o">.</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="n">org_unknown_indices</span> <span class="o">=</span> <span class="n">all_indices</span><span class="p">[</span><span class="n">mask</span><span class="p">][</span><span class="n">cluster_c_unknown_indices</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">org_unknown_indices</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">votes</span><span class="p">:</span>
+                    <span class="n">votes</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="n">vote_label</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">votes</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">)</span>
+                    <span class="n">votes</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="n">vote_label</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">votes</span>
+
+    <span class="k">def</span> <span class="nf">_component_quality</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_opt</span><span class="p">,</span> <span class="n">cluster_labels</span><span class="p">,</span> <span class="n">known_sample_indices</span><span class="p">,</span> <span class="n">curr_y</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
+
+        <span class="n">maximums</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_opt</span><span class="p">):</span>
+            <span class="n">cluster_c_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">cluster_labels</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+            <span class="c1"># empty cluster</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cluster_c_indices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="n">cluster_c_known_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">intersect1d</span><span class="p">(</span>
+                <span class="n">known_sample_indices</span><span class="p">,</span> <span class="n">cluster_c_indices</span>
+            <span class="p">)</span>
+
+            <span class="c1"># no known samples in the cluster - abstaining prediction</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cluster_c_known_indices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="n">cluster_c_known_labels</span> <span class="o">=</span> <span class="n">curr_y</span><span class="p">[</span><span class="n">cluster_c_known_indices</span><span class="p">]</span>
+            <span class="n">cluster_c_known_label_counts</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">Counter</span><span class="p">(</span><span class="n">cluster_c_known_labels</span><span class="p">))</span>
+            <span class="n">maximums</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">cluster_c_known_label_counts</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+            <span class="n">total</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cluster_c_known_indices</span><span class="p">)</span>
+
+        <span class="c1"># if none of the clusters had known instances</span>
+        <span class="k">if</span> <span class="n">total</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+
+        <span class="n">purity_score</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">maximums</span><span class="p">)</span> <span class="o">/</span> <span class="n">total</span>
+
+        <span class="k">return</span> <span class="n">purity_score</span></div>
+</pre></div>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Maksim E. Eren<br/>
+    
+        &copy; Copyright 2022, Maksim E. Eren.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

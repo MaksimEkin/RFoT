@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+
+<html lang="Python">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RFoT.utilities.sample_tensor_configs &#8212; RFoT v0.0.1 documentation</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=84ace793992934648b4de8eed757e5a2" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx-book-theme.9d8b4a8b9bb19db25eeaddc40d639ba2.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="Python">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<div class="col-12 col-md-3 bd-sidebar site-navigation " id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">RFoT v0.0.1 documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contents:
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../modules.html">
+   RFoT
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../RFoT.html">
+     RFoT package
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../RFoT.clustering.html">
+       RFoT.clustering package
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../RFoT.cp_als_numpy.html">
+       RFoT.cp_als_numpy package
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../RFoT.utilities.html">
+       RFoT.utilities package
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<!-- This is an invisible pixel that we watch to see if we've scrolled. -->
+<div class="sbt-scroll-pixel-helper"></div>
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            <div class="topbar-left">
+                
+                <label class="nav-toggle-button" for="__navigation">
+                    <div class="visually-hidden">Toggle navigation</div>
+                    <i class="fas fa-bars"></i>
+                </label>
+                
+            </div>
+            
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <h1>Source code for RFoT.utilities.sample_tensor_configs</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<div class="viewcode-block" id="setup_tensors"><a class="viewcode-back" href="../../../RFoT.utilities.html#RFoT.utilities.sample_tensor_configs.setup_tensors">[docs]</a><span class="k">def</span> <span class="nf">setup_tensors</span><span class="p">(</span>
+    <span class="n">min_dimensions</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> 
+    <span class="n">max_dimensions</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span>
+    <span class="n">X</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span>
+    <span class="n">n_estimators</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span>
+    <span class="n">rank</span><span class="p">,</span>
+    <span class="n">min_rank</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span>
+    <span class="n">max_rank</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Samples random set of tensor configurations specified by the dimension</span>
+<span class="sd">    names, entry feature name, and the rank.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">min_rank</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">min_rank</span> <span class="o">=</span> <span class="mi">1</span>
+    
+    <span class="c1"># reduce max dimensions by one since we will add the first dimension to be samples</span>
+    <span class="n">max_dimensions</span> <span class="o">-=</span> <span class="mi">1</span>
+    
+    <span class="c1"># random seed for sampling</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+    
+    <span class="c1"># get the name for the possible dimensions</span>
+    <span class="n">dimensions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
+
+    <span class="c1"># Possible tensor dimension sizes</span>
+    <span class="n">possible_dimension_sizes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">min_dimensions</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_dimensions</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    
+    <span class="c1"># Sample n from the possible dimension sizes, with the 10% over-sample rate included</span>
+    <span class="n">target_dim_sizes</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">(</span><span class="n">possible_dimension_sizes</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">n_estimators</span><span class="o">+</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">n_estimators</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">)))</span>
+    <span class="n">random_dimensions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    
+    <span class="c1"># for each possible number of dimensions setup, choose random set of dimensions</span>
+    <span class="k">for</span> <span class="n">dim_size</span> <span class="ow">in</span> <span class="n">target_dim_sizes</span><span class="p">:</span>
+        <span class="n">random_dimensions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">dimensions</span><span class="p">,</span> <span class="n">dim_size</span><span class="p">))</span>
+    
+    <span class="c1"># sort the dimensions, randomly choose entry, randomly choose rank, add the sample dimension</span>
+    <span class="n">tensor_setups</span><span class="o">=</span><span class="nb">dict</span><span class="p">()</span>
+    <span class="n">used_setups</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">ii</span><span class="p">,</span> <span class="n">dims</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">random_dimensions</span><span class="p">):</span>
+
+        <span class="c1"># sort the dimensions by the unique number of elements</span>
+        <span class="n">n_unique_per_dimension</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dimensions</span><span class="p">:</span>
+            <span class="n">n_unique_per_dimension</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">d</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">())</span>
+        <span class="n">dims</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span><span class="n">x</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">n_unique_per_dimension</span><span class="p">,</span><span class="n">dims</span><span class="p">),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)]</span>
+
+        <span class="c1"># find the possible tensor entries that are not in the dimensions already</span>
+        <span class="n">not_in_dimensions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span><span class="o">-</span><span class="nb">set</span><span class="p">(</span><span class="n">dimensions</span><span class="p">))</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">dimensions</span><span class="p">)</span><span class="o">-</span><span class="nb">set</span><span class="p">(</span><span class="n">dims</span><span class="p">)))</span>
+
+        <span class="c1"># finalize</span>
+        <span class="n">dimensions_curr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">dims</span> <span class="c1"># [0] for the Sample dimension (for mode 0)</span>
+        <span class="n">entry_curr</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">not_in_dimensions</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="s2">&quot;random&quot;</span><span class="p">:</span>
+            <span class="n">selected_rank_curr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">min_rank</span><span class="p">,</span> <span class="n">max_rank</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">selected_rank_curr</span> <span class="o">=</span> <span class="n">rank</span>
+        
+        <span class="c1"># ensure we have not used the same setup before</span>
+        <span class="n">dimensions_str</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">dimensions_curr</span><span class="p">]</span>
+        <span class="n">identifier</span> <span class="o">=</span> <span class="s2">&quot;;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dimensions_str</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">entry_curr</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">selected_rank_curr</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">identifier</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">used_setups</span><span class="p">:</span>
+            <span class="n">used_setups</span><span class="p">[</span><span class="n">identifier</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">tensor_setups</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">ii</span><span class="p">)]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+            <span class="n">tensor_setups</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">ii</span><span class="p">)][</span><span class="s2">&quot;dimensions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dimensions_curr</span>
+            <span class="n">tensor_setups</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">ii</span><span class="p">)][</span><span class="s2">&quot;entry&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">entry_curr</span>
+            <span class="n">tensor_setups</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">ii</span><span class="p">)][</span><span class="s2">&quot;rank&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">selected_rank_curr</span>
+    
+    <span class="c1"># adjust for over-sampling</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tensor_setups</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">n_estimators</span><span class="p">:</span>
+        <span class="n">tensor_setups_cpy</span> <span class="o">=</span> <span class="n">tensor_setups</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">tensor_setups</span> <span class="o">=</span> <span class="p">{}</span>
+            
+        <span class="k">for</span> <span class="n">ii</span><span class="p">,</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tensor_setups_cpy</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+            <span class="n">tensor_setups</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">ii</span><span class="p">)]</span> <span class="o">=</span> <span class="n">values</span>
+            <span class="k">if</span> <span class="n">ii</span> <span class="o">==</span> <span class="p">(</span><span class="n">n_estimators</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="k">break</span>
+            
+    <span class="k">return</span> <span class="n">tensor_setups</span></div>
+</pre></div>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Maksim E. Eren<br/>
+    
+        &copy; Copyright 2022, Maksim E. Eren.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
