@@ -35,6 +35,7 @@ git clone https://github.com/MaksimEkin/RFoT.git
 cd RFoT
 conda create --name RFoT python=3.8.5
 source activate RFoT
+pip install git+https://github.com/lanl/pyCP_APR.git
 python setup.py install
 ```
 
