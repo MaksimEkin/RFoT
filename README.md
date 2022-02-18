@@ -117,6 +117,10 @@ print(f1)
 }
 ```
 
+## Acknowledgments
+
+This work was done as part of Maksim E. Eren's Master's Thesis at the University of Maryland, Baltimore County with the thesis committee members Charles Nicholas, Edward Raff, Roberto Yus, Boian S. Alexandrov, and Juston S. Moore.
+
 ## Developer Test Suite
 Developer test suites are located under [```tests/```](tests/) directory. Tests can be ran from this folder using ```python -m unittest *```.
 
