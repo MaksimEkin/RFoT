@@ -49,7 +49,7 @@ from sklearn.metrics import f1_score
 from RFoT import RFoT
 
 # load the exmple data
-data = pickle.load(open("data/example.p"))
+data = pickle.load(open("data/example.p", "rb"))
 X = data["X"]
 y_experiment = data["y_experiment"]
 y_true = data["y_true"]

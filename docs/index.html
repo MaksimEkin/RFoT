@@ -383,11 +383,7 @@ pip install git+https://github.com/MaksimEkin/RFoT.git
 <p>In below example, we use a small sample from <a class="reference external" href="https://github.com/elastic/ember">EMBER-2018</a> dataset to classify malware and benign-ware:</p>
 <ul class="simple">
 <li><p>Random tensors in the ensemble are decomposed in a multi-GPU parallel fashion using 2 GPUs. (<code class="docutils literal notranslate"><span class="pre">n_jobs=2</span></code>, <code class="docutils literal notranslate"><span class="pre">n_gpus=2</span></code>).</p></li>
-</ul>
-<ul class="simple">
 <li><p>Use CP-APR tensor decomposition backend with GPU (<code class="docutils literal notranslate"><span class="pre">decomp=&quot;cp_apr_gpu&quot;</span></code>).</p></li>
-</ul>
-<ul class="simple">
 <li><p>200 tensor configurations are randomly sampled (<code class="docutils literal notranslate"><span class="pre">n_estimators=200</span></code>).</p></li>
 <li><p>A tensor's dimension in the ensemble could be between 3 and 8 (<code class="docutils literal notranslate"><span class="pre">min_dimensions=3</span></code>, <code class="docutils literal notranslate"><span class="pre">max_dimensions=8</span></code>).</p></li>
 <li><p>Rank is between 2 and 10. (<code class="docutils literal notranslate"><span class="pre">rank=&quot;random&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">min_rank=2</span></code>, <code class="docutils literal notranslate"><span class="pre">max_rank=10</span></code>).</p></li>
@@ -402,7 +398,7 @@ pip install git+https://github.com/MaksimEkin/RFoT.git
 <span class="kn">from</span> <span class="nn">RFoT</span> <span class="kn">import</span> <span class="n">RFoT</span>
 
 <span class="c1"># load the exmple data</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/example.p&quot;</span><span class="p">))</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/example.p&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">))</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;X&quot;</span><span class="p">]</span>
 <span class="n">y_experiment</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;y_experiment&quot;</span><span class="p">]</span>
 <span class="n">y_true</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;y_true&quot;</span><span class="p">]</span>

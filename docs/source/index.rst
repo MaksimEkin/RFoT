@@ -33,7 +33,7 @@ Example Usage
 In below example, we use a small sample from `EMBER-2018 <https://github.com/elastic/ember>`_ dataset to classify malware and benign-ware:
 
 * Random tensors in the ensemble are decomposed in a multi-GPU parallel fashion using 2 GPUs. (``n_jobs=2``, ``n_gpus=2``).
-- Use CP-APR tensor decomposition backend with GPU (``decomp="cp_apr_gpu"``).
+* Use CP-APR tensor decomposition backend with GPU (``decomp="cp_apr_gpu"``).
 * 200 tensor configurations are randomly sampled (``n_estimators=200``).
 * A tensor's dimension in the ensemble could be between 3 and 8 (``min_dimensions=3``, ``max_dimensions=8``). 
 * Rank is between 2 and 10. (``rank="random"``, ``min_rank=2``, ``max_rank=10``).
@@ -51,7 +51,7 @@ In below example, we use a small sample from `EMBER-2018 <https://github.com/ela
     from RFoT import RFoT
 
     # load the exmple data
-    data = pickle.load(open("data/example.p"))
+    data = pickle.load(open("data/example.p", "rb"))
     X = data["X"]
     y_experiment = data["y_experiment"]
     y_true = data["y_true"]
