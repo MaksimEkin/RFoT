@@ -281,8 +281,7 @@ class RFoT:
         tensor_votes = list()
         tasks = []
 
-        idx = 0
-        for key, config in tensor_configs.items():
+        for idx, (key, config) in enumerate(tensor_configs.items()):
             if self.decomp in ["cp_apr_gpu"]:
                 if self.n_gpus == 1:
                     tasks.append((config, X, y, self.gpu_id))
@@ -290,7 +289,6 @@ class RFoT:
                     tasks.append((config, X, y, idx%self.n_gpus))
             else:
                 tasks.append((config, X, y))
-            idx+=1
 
         if self.decomp in ["cp_als", "cp_apr"]:
             pool = Pool(processes=self.n_jobs)
@@ -302,17 +300,17 @@ class RFoT:
                 tensor_votes.append(tv)
 
         elif self.decomp in ["cp_apr_gpu"]:
-            #pool = Pool(processes=self.n_jobs)
-            #for tv in tqdm.tqdm(
-            #    pool.istarmap(self._get_tensor_votes, tasks, chunksize=1),
-            #    total=len(tasks),
-            #    disable=not (self.verbose),
-            #):
-            #    tensor_votes.append(tv)
-
-            for task in tqdm.tqdm(tasks, total=len(tasks), disable=not (self.verbose)):
-                tv = self._get_tensor_votes(config=task[0], X=task[1], y=task[2], gpu_id=task[3])
+            pool = Pool(processes=self.n_jobs)
+            for tv in tqdm.tqdm(
+                pool.istarmap(self._get_tensor_votes, tasks, chunksize=1),
+                total=len(tasks),
+                disable=not (self.verbose),
+            ):
                 tensor_votes.append(tv)
+
+            #for task in tqdm.tqdm(tasks, total=len(tasks), disable=not (self.verbose)):
+            #    tv = self._get_tensor_votes(config=task[0], X=task[1], y=task[2], gpu_id=task[3])
+            #    tensor_votes.append(tv)
 
         elif self.decomp in ["debug"]:
             for task in tqdm.tqdm(tasks, total=len(tasks), disable=not (self.verbose)):
