@@ -1,5 +1,5 @@
-RFoT package
-============
+RFoT Code Base
+==============
 
 Subpackages
 -----------
@@ -8,7 +8,6 @@ Subpackages
    :maxdepth: 4
 
    RFoT.clustering
-   RFoT.cp_als_numpy
    RFoT.utilities
 
 Submodules
@@ -18,14 +17,10 @@ RFoT.RFoT module
 ----------------
 
 .. currentmodule:: RFoT.RFoT
-
-.. autosummary::
-
-   RFoT.__init__
-   RFoT.predict
    
 .. automodule:: RFoT.RFoT
    :members:
+   :noindex:
    :undoc-members:
    :show-inheritance:
 
@@ -42,5 +37,6 @@ Module contents
 
 .. automodule:: RFoT
    :members:
+   :noindex:
    :undoc-members:
    :show-inheritance:

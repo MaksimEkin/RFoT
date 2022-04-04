@@ -1,7 +1,6 @@
 # Random Forest of Tensors (RFoT) <img align="left" width="50" height="50" src="RFoT/RFoT.png">
 
 <div align="center", style="font-size: 50px">
-    <img src="https://github.com/MaksimEkin/RFoT/actions/workflows/ci_tests.yml/badge.svg?branch=main"></img>
     <img src="https://img.shields.io/hexpm/l/plug"></img>
     <img src="https://img.shields.io/badge/python-v3.8.5-blue"></img>
 </div>
@@ -12,31 +11,23 @@
   <img width="500" src="RFoT/rfot_demo.png">
 </p>
 
-Tensor decomposition is a powerful unsupervised ML method that enables the modeling of multi-dimensional data, including malware data. This paper introduces a novel ensemble semi-supervised classification algorithm, named Random Forest of Tensors (RFoT), that utilizes tensor decomposition to extract the complex and multi-faceted latent patterns from data. Our hybrid model leverages the strength of multi-dimensional analysis combined with clustering to capture the sample groupings in the latent components whose combinations distinguish malware and benign-ware. The patterns extracted from a given data with tensor decomposition depend on the configuration of the tensor such as dimension, entry, and rank selection. To capture the unique perspectives of different tensor configurations we employ the *"wisdom of crowds"* philosophy, and make use of decisions made by the majority of a randomly generated ensemble of tensors with varying dimensions, entries, and ranks. We show the capabilities of RFoT when classifying malware and benign-ware from the EMBER-2018 dataset.
+Tensor decomposition is a powerful unsupervised Machine Learning method that enables the modeling of multi-dimensional data, including malware data. We introduce a novel ensemble semi-supervised classification algorithm, named Random Forest of Tensors (RFoT), that utilizes tensor decomposition to extract the complex and multi-faceted latent patterns from data. Our hybrid model leverages the strength of multi-dimensional analysis combined with clustering to capture the sample groupings in the latent components, whose combinations distinguish malware and benign-ware. The patterns extracted from a given data with tensor decomposition depend upon the configuration of the tensor such as dimension, entry, and rank selection. To capture the unique perspectives of different tensor configurations, we employ the “wisdom of crowds” philosophy and make use of decisions made by the majority of a randomly generated ensemble of tensors with varying dimensions, entries, and ranks.
 
+As the tensor decomposition backend, RFoT offers two CPD algorithms. First, RFoT package includes the Python implementation of **CP-ALS** algorithm that was originally introduced in the [MATLAB Tensor Toolbox](https://www.tensortoolbox.org/cp.html>) [2,3,4,5]. CP-ALS backend can also be used to **decompose each random tensor in a parallel manner**. RFoT can also be used with the Python implentation of the **CP-APR** algorithm with the **GPU capability** [1]. Use of CP-APR backend allows decomposing each random tensor configuration both in an **embarrassingly parallel fashion in a single GPU**, and in a **multi-GPU parallel execution**.
 
 <div align="center", style="font-size: 50px">
 
-### [:orange_book: Example Notebooks](examples/) &emsp; [:bar_chart: Datasets](data/) &emsp; [:page_facing_up: Abstract](https://www.maksimeren.com/abstract/Random_Forest_of_Tensors_RFoT_MTEM.pdf)  &emsp; [:scroll: Poster](https://www.maksimeren.com/poster/Random_Forest_of_Tensors_RFoT_MTEM.pdf)
+### [:information_source: Documentation](#) &emsp; [:orange_book: Example Notebooks](examples/) &emsp; [:bar_chart: Datasets](data/) &emsp; [:page_facing_up: Abstract](https://www.maksimeren.com/abstract/Random_Forest_of_Tensors_RFoT_MTEM.pdf)  &emsp; [:scroll: Poster](https://www.maksimeren.com/poster/Random_Forest_of_Tensors_RFoT_MTEM.pdf)
 
 </div>
 
 
 ## Installation
 
-#### Option 1: Install using *pip*
 ```shell
-pip install git+https://github.com/MaksimEkin/RFoT.git
-```
-
-#### Option 2: Install from source
-```shell
-git clone https://github.com/MaksimEkin/RFoT.git
-cd RFoT
 conda create --name RFoT python=3.8.5
-source activate RFoT
-pip install git+https://github.com/lanl/pyCP_APR.git
-python setup.py install
+conda activate RFoT
+pip install git+https://github.com/MaksimEkin/RFoT.git
 ```
 
 ## Example Usage
@@ -91,21 +82,6 @@ print(f1)
 ```
 **See the [examples](examples/) for more.**
 
-## Prerequisites
-- numpy~=1.19.2
-- matplotlib>=3.3.4
-- pandas>=1.0.5
-- scikit-learn>=0.22.2
-- scipy>=1.5.3
-- seaborn>=0.11.1
-- tqdm>=4.62.3
-- sparse>=0.13.0
-- joblib>=1.0.1
-- numpy-indexed>=0.3.5
-- torch>=1.6.0
-- requests>=2.25.1
-- spacy
-
 ## How to Cite RFoT?
 If you use RFoT, please cite it.
 
@@ -143,3 +119,4 @@ Developer test suites are located under [```tests/```](tests/) directory. Tests 
 
 [4] Sparse, Kruskal, and Tucker tensors: B. W. Bader and T. G. Kolda, Efficient MATLAB Computations with Sparse and Factored Tensors, SIAM J. Scientific Computing, 30(1):205-231, 2007, http://dx.doi.org/10.1137/060676489.
 
+[5] M. E. Eren. pyCP_ALS. https://github.com/MaksimEkin/pyCP_ALS, 2022.

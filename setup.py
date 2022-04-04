@@ -10,6 +10,7 @@ with open('README.md', 'r') as f:
 with open('requirements.txt', 'r') as f:
     INSTALL_REQUIRES = f.read().strip().split('\n')
     INSTALL_REQUIRES.append("pyCP_APR @ https://github.com/lanl/pyCP_APR/tarball/main#egg=pyCP_APR-1.0.1")
+    INSTALL_REQUIRES.append("pyCP_ALS @ https://github.com/MaksimEkin/pyCP_ALS/tarball/main#egg=pyCP_ALS-0.0.1")
 
 setup(
     name='RFoT',
@@ -23,12 +24,15 @@ setup(
     platforms = ["Linux", "Mac", "Windows"],
     include_package_data=True,
     setup_requires=[
-        'joblib', 'matplotlib', 'numpy',
+        'joblib', 'matplotlib', 'numpy==1.19.2',
         'pandas', 'scikit-learn', 'scipy', 'seaborn',
         'tqdm', 'sparse'
     ],
     url='https://github.com/MaksimEkin/RFoT',
-    dependency_links=['https://github.com/lanl/pyCP_APR/tarball/main#egg=pyCP_APR-1.0.1'],
+    dependency_links=[
+        'https://github.com/lanl/pyCP_APR/tarball/main#egg=pyCP_APR-1.0.1',
+        'https://github.com/MaksimEkin/pyCP_ALS/tarball/main#egg=pyCP_ALS-0.0.1',
+    ],
     packages=find_packages(),
     classifiers=[
         'Development Status :: 3 - Alpha',

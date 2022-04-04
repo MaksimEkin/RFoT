@@ -1,19 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-Tensor decomposition is a powerful unsupervised ML method that enables the modeling of multi-dimensional data, including malware data. This paper introduces a novel ensemble semi-supervised classification algorithm, named Random Forest of Tensors (RFoT), that utilizes tensor decomposition to extract the complex and multi-faceted latent patterns from data. Our hybrid model leverages the strength of multi-dimensional analysis combined with clustering to capture the sample groupings in the latent components whose combinations distinguish malware and benign-ware. The patterns extracted from a given data with tensor decomposition depend on the configuration of the tensor such as dimension, entry, and rank selection. To capture the unique perspectives of different tensor configurations we employ the "wisdom of crowds" philosophy, and make use of decisions made by the majority of a randomly generated ensemble of tensors with varying dimensions, entries, and ranks. We show the capabilities of RFoT when classifying malware and benign-ware from the EMBER-2018 dataset.
+Tensor decomposition is a powerful unsupervised Machine Learning method that enables the modeling of multi-dimensional data, including malware data. We introduce a novel ensemble semi-supervised classification algorithm, named Random Forest of Tensors (RFoT), that utilizes tensor decomposition to extract the complex and multi-faceted latent patterns from data. Our hybrid model leverages the strength of multi-dimensional analysis combined with clustering to capture the sample groupings in the latent components, whose combinations distinguish malware and benign-ware. The patterns extracted from a given data with tensor decomposition depend upon the configuration of the tensor such as dimension, entry, and rank selection. To capture the unique perspectives of different tensor configurations, we employ the “wisdom of crowds” philosophy and make use of decisions made by the majority of a randomly generated ensemble of tensors with varying dimensions, entries, and ranks.
 
-References
-========================================
-[1] Eren, M.E., Moore, J.S., Skau, E.W., Bhattarai, M., Moore, E.A, and Alexandrov, B.. 2022. General-Purpose Unsupervised Cyber Anomaly Detection via Non-Negative Tensor Factorization. Digital Threats: Research and Practice, 28 pages. DOI: https://doi.org/10.1145/3519602
+As the tensor decomposition backend, RFoT offers two CPD algorithms. First, RFoT package includes the Python implementation of **CP-ALS** algorithm that was originally introduced in the `MATLAB Tensor Toolbox <https://www.tensortoolbox.org/cp.html>`_  :cite:p:`TTB_Software,Bader2006,Bader2008`. CP-ALS backend can also be used to **decompose each random tensor in a parallel manner**. RFoT can also be used with the Python implentation of the **CP-APR** algorithm with the **GPU capability** :cite:p:`10.1145/3519602`. Use of CP-APR backend allows decomposing each random tensor configuration both in an **embarrassingly parallel fashion in a single GPU**, and in a **multi-GPU parallel execution**.
 
-[2] General software, latest release: Brett W. Bader, Tamara G. Kolda and others, Tensor Toolbox for MATLAB, Version 3.2.1, www.tensortoolbox.org, April 5, 2021.
-
-[3] Dense tensors: B. W. Bader and T. G. Kolda, Algorithm 862: MATLAB Tensor Classes for Fast Algorithm Prototyping, ACM Trans. Mathematical Software, 32(4):635-653, 2006, http://dx.doi.org/10.1145/1186785.1186794.
-
-[4] Sparse, Kruskal, and Tucker tensors: B. W. Bader and T. G. Kolda, Efficient MATLAB Computations with Sparse and Factored Tensors, SIAM J. Scientific Computing, 30(1):205-231, 2007, http://dx.doi.org/10.1137/060676489.
 """
 
-from .cp_als_numpy.cp_als import CP_ALS
+from pyCP_ALS import CP_ALS
 from pyCP_APR import CP_APR
 
 from .utilities.bin_columns import bin_columns
@@ -34,37 +27,173 @@ import operator
 
 
 class RFoT:
-    def __init__(
-        self,
-        max_depth=1,
-        min_rank=2,
-        max_rank=20,
-        min_dimensions=3,
-        max_dimensions=3,
-        min_cluster_search=2,
-        max_cluster_search=12,
-        component_purity_tol=-1,
-        cluster_purity_tol=0.9,
-        n_estimators=80,
-        rank="random",
-        clustering="gmm",
-        decomp="cp_als",
-        zero_tol=1e-08,
-        dont_bin=list(),
-        bin_scale=1.0,
-        bin_entry=False,
-        bin_max_map={"max": 10 ** 6, "bin": 10 ** 3},
-        tol=1e-4,
-        n_iters=50,
-        verbose=True,
-        decomp_verbose=False,
-        fixsigns=True,
-        random_state=42,
-        n_jobs=1,
-        n_gpus=1,
-        gpu_id=0,
-    ):
+    def __init__(self,
+                 max_depth=1,
+                 min_rank=2,
+                 max_rank=20,
+                 min_dimensions=3,
+                 max_dimensions=3,
+                 min_cluster_search=2,
+                 max_cluster_search=12,
+                 component_purity_tol=-1,
+                 cluster_purity_tol=0.9,
+                 n_estimators=80,
+                 rank="random",
+                 clustering="ms",
+                 decomp="cp_als",
+                 zero_tol=1e-08,
+                 dont_bin=list(),
+                 bin_scale=1.0,
+                 bin_entry=False,
+                 bin_max_map={"max": 10 ** 6,
+                 "bin": 10 ** 3},
+                 tol=1e-4,
+                 n_iters=50,
+                 verbose=True,
+                 decomp_verbose=False,
+                 fixsigns=True,
+                 random_state=42,
+                 n_jobs=1,
+                 n_gpus=1,
+                 gpu_id=0):
+        """
+        Initilize the **RFoT.RFoT** class.
 
+        Parameters
+        ----------
+        max_depth : int, optional
+            Maximum number of times to run RFoT. The default is 1.
+            
+            .. note::
+                * If ``max_depth=1``, data is fit with RFoT once.
+                * Otherwise, when ``max_depth`` is more than 1, each corresponding fit of the data with RFoT will work on the abstaining predictions from the prior fit.
+            
+        min_rank : int, optional
+            Minimum tensor rank R to be randomly sampled. The default is 2.
+            
+            .. note::
+                * Should be more than 1. ``min_rank`` should be less than ``max_rank``.
+                * Only used when ``rank="random"``.
+
+
+        max_rank : int, optional
+            Maximum tensor rank R to be randomly sampled. The default is 20.
+            
+            .. note::
+                * ``max_rank`` should be more than ``min_rank``.
+                * Only used when ``rank="random"``.
+
+
+        min_dimensions : int, optional
+            When randomly sampling tensor configurations, minimum number of dimensions a tensor should have within the ensemble of random tensor configurations. The default is 3.
+
+        max_dimensions : int, optional
+            When randomly sampling tensor configurations, maximum number of dimensions a tensor should have within the ensemble of random tensor configurations. The default is 3.
+
+        min_cluster_search : int, optional
+            When searching for the number of clusters via likelihood in GMM, minimum number of clusters to try. The default is 2.
+        max_cluster_search : int, optional
+            When searching for the number of clusters via likelihood in GMM, maximum number of clusters to try. The default is 12.
+        component_purity_tol : float or int, optional
+            The purity score threshold for the latent factors. The default is -1.\n
+            This threshold is calculated based on the known instances in the component.\n
+            If the purity score of the latent factor is lower then the threshold ``component_purity_tol``, component is discarded and would not be used in obtaining clusters.
+            
+            .. note::
+                * By default ``component_purity_tol=-1``.
+                * When ``component_purity_tol=-1``, component uniformity is not used in deciding whether to discard the components, and only ``cluster_purity_tol`` is used.
+                * Either ``component_purity_tol`` or ``cluster_purity_tol`` must be more than 0.
+            
+        cluster_purity_tol : float, optional
+            The purity score threshold for the clusters. The default is 0.9.
+            This threshold is calculated based on the known instances in the cluster.\n
+            If the purity score of the cluster is lower then the threshold ``cluster_purity_tol``, cluster is discarded and would not be used in the semi-supervised class voting of the unknown samples in the same cluster.
+            
+            .. note::
+                * When ``cluster_purity_tol=-1``, cluster uniformity is not used in deciding whether to discard the clusters, and only ``component_purity_tol`` is used. 
+                * Either ``component_purity_tol`` or ``cluster_purity_tol`` must be more than 0.
+            
+        n_estimators : int, optional
+            Number of random tensor configurations in the ensemble. The default is 80.
+            
+            .. warning::
+                * Based on the hyper-parameter configurations, and the number of features in the dataset, it is possible to have less number of random tensor configurations than the one specified in ``n_estimators``.
+            
+        rank : int or string, optional
+            Method for assigning rank for each random tensor to be decomposed. The default is "random".\n
+            When ``rank="random"``, the rank for decomposition is sampled randomly from the range (``min_rank``, ``max_rank``).\n
+            All the tensors in the ensemble can also be decomposed with same rank (example: ``rank=2``).
+            
+        clustering : string, optional
+            Clustering method to be used for capturing the patterns from the latent factors. The default is "ms".\n
+            Options are: **"ms"**, **"component"**, and **"gmm"**.
+            
+        decomp : string, optional
+            Tensor decomposition backend/algorithm to be used. The default is "cp_als".\n
+            Options are: **"cp_als"**, **"cp_apr"**, **"cp_apr_gpu"** and **"debug"**.
+            
+            .. note::
+                * GPU is used when ``decomp="cp_apr_gpu"``.
+                * ``decomp="debug"`` allows serial computation where any error or warning would be raised to the user level.
+            
+        zero_tol : float, optional
+            Samples who are close to the zero, where closeness defined by ``zero_tol``, are removed from the latent factor. The default is 1e-08.
+            
+        dont_bin : list, optional
+            List of column (feature) indices whose values should not be binned. The default is list().
+            
+        bin_scale : float, optional
+            When using a given column (feature) as a tensor dimension, the feature values are binned to create feature value to tensor dimension mapping. This allows a feature value to be represented by an index in the tensor dimension for that feature. The default is 1.0.\n
+            When ``bin_scale=1.0``, the size of the dimension that represents the given feature will be equal to the number of unique values in that column (feature).
+            
+            .. note::
+                * See `Pandas Cut <https://pandas.pydata.org/docs/reference/api/pandas.cut.html>`_ for value binning.
+            
+        bin_entry : bool, optional
+            If ``bin_entry=True``, the features that are used as tensor entry are also binned. The default is False.
+            
+        bin_max_map : dict, optional
+            If ``bin_scale``x``(number of unique features`` is more than ``bin_max_map["max"]``, number of bins for features to map is manually selected from ``bin_max_map["bin"]`. The default is {"max": 10 ** 6, "bin": 10 ** 3}.\n
+            ``bin_max_map`` prevents any dimension of any of the tensors in the ensemble to be too large.
+            
+        tol : float, optional
+            CP-ALS hyper-parameter. The default is 1e-4.
+        n_iters : int, optional
+             Maximum number of iterations (epoch) to run the tensor decomposition algorithm. The default is 50.
+        verbose : bool, optional
+            If ``verbose=True``, progress of the method is displayed. The default is True.
+        decomp_verbose : bool, optional
+            If ``decomp_verbose=True``, progress of the tensor decomposition backend is displayed for each random tensor. The default is False.
+        fixsigns : bool, optional
+            CP-ALS hyper-parameter. The default is True.
+        random_state : int, optional
+            Random seed. The default is 42.
+        n_jobs : int, optional
+            Number of prallel tensor decompositions to perform when decomposing the random tensors from the ensemble. The default is 1.
+        n_gpus : int, optional
+            Number of GPUs. The default is 1.
+            
+            .. note::
+                * Only used when ``decomp="cp_apr_gpu"``.
+                * When ``n_gpus`` is more than 1, and when ``n_jobs`` is more than one, multi-GPU parallel execution is performed. For example, ``n_gpus=2`` and ``n_jobs=2`` will use 2 GPUs, and 1 job will be run on each GPU in parallel.
+            
+        gpu_id : int, optional
+            GPU device ID when using GPU. The default is 0.
+            
+            .. note::
+                * Only used when ``decomp="cp_apr_gpu"``.
+                * Not considered when ``n_gpus`` is more than 1.
+
+        Raises
+        ------
+        Exception
+            Invalid parameter selection.
+
+        Returns
+        -------
+        None.
+
+        """
 
         self.max_depth = max_depth
         self.min_rank = min_rank
@@ -118,7 +247,7 @@ class RFoT:
         Returns
         -------
         dict
-            RFoT object variables.
+            Parameters and data stored in the RFoT object.
 
         """
 
@@ -126,7 +255,7 @@ class RFoT:
 
     def set_params(self, **parameters):
         """
-        Used to set the parameters of RFoT object
+        Used to set the parameters of RFoT object.
 
         Parameters
         ----------
@@ -146,10 +275,94 @@ class RFoT:
 
     def predict(self, X: np.array, y: np.ndarray):
         """
-        Predict the unknown samples (with labels -1) based on the known samples.
+        Semi-supervised prediction of the unknown samples (with labels -1) based on the known samples.
 
         .. warning::
-            Use -1 for the unknown samples.
+            * Use -1 for the unknown samples.
+            * In returned ``y_pred``, samples with -1 predictions are said to be abstaining predictions (i.e. model says "we do not know that the label for that sample is").
+            * Returned ``y_pred`` includes both known and unknown samples, where the labels of unknown samples may have changed from the original ``y``.
+
+        .. note::
+        
+            **Example usage:**
+
+            .. code-block:: python
+
+                from RFoT import RFoT
+                from sklearn import datasets
+                from sklearn.metrics import f1_score
+                import numpy as np
+
+                # load the dataset
+                iris = datasets.load_iris()
+                X = iris["data"]
+                y = (iris["target"] == 2).astype(np.int) 
+
+                y_true = y.copy()
+                y_experiment = y_true.copy()
+
+                # label 30% some as unknown
+                rng = np.random.RandomState(42)
+                random_unlabeled_points = rng.rand(y_experiment.shape[0]) < 0.3
+                y_experiment[random_unlabeled_points] = -1
+
+                # predict with RFoT
+                model = RFoT(
+                        bin_scale=1,
+                        max_dimensions=3,
+                        component_purity_tol=1.0,
+                        min_rank=2,
+                        max_rank=3,
+                        n_estimators=50,
+                        bin_entry=True,
+                        clustering="ms",
+                        max_depth=2,
+                        n_jobs=50,
+                )
+                y_pred = model.predict(X, y_experiment)
+
+                # look at results
+                unknown_indices = np.argwhere(y_experiment == -1).flatten()
+                did_predict_indices = np.argwhere(y_pred[unknown_indices] != -1).flatten()
+                abstaining_count = len(np.argwhere(y_pred == -1))
+                f1 = f1_score(
+                    y_true[unknown_indices][did_predict_indices],
+                    y_pred[unknown_indices][did_predict_indices],
+                    average="weighted",
+                )
+
+                print("------------------------")
+                print("Num. of Abstaining", abstaining_count)
+                print("Percent Abstaining", (abstaining_count / len(unknown_indices)) * 100, "%")
+                print("F1=", f1)
+
+        .. note::
+        
+            **Example getting scores:**
+
+            .. code-block:: python
+
+                # y is the vector of known and unknown labels passed to RFoT
+                # y_pred is the prediction returned by RFoT
+                # y_true is the ground truth
+
+                import numpy as np
+                from sklearn.metrics import f1_score
+
+                unknown_indices = np.argwhere(y == -1).flatten()
+                did_predict_indices = np.argwhere(y_pred[unknown_indices] != -1).flatten()
+                abstaining_count = len(np.argwhere(y_pred == -1))
+
+                f1 = f1_score(
+                    y_true[unknown_indices][did_predict_indices],
+                    y_pred[unknown_indices][did_predict_indices],
+                    average="weighted",
+                )
+
+                print("Num. of Abstaining", abstaining_count)
+                print("Percent Abstaining", (abstaining_count / len(unknown_indices)) * 100, "%")
+                print("F1=", f1)
+
 
         Parameters
         ----------
@@ -519,27 +732,26 @@ class RFoT:
         curr_y,
         all_indices,
         mask,
-        votes,
-    ):
+        votes,):
         """
-        Performs semi-supervised voting for the current cluster and returns the votes.
+        Performs semi-supervised voting.
 
         Parameters
         ----------
         n_opt : int
             Number of clusters.
         cluster_labels : np.ndarray
-            Labels for the samples in the cluster.
+            List if cluster labels for each sample.
         known_sample_indices : np.ndarray
-            Array of indices for known samples.
-        unknown_sample_indices : np.ndarray
-            Array of indices for unknown samples.
+            Indices of the known samples.
+        unknown_sample_indices : TYPE
+            Indices of the unknown samples.
         curr_y : np.ndarray
-            Labels for known and unknown samples.
+            Labels.
         all_indices : np.ndarray
             Original indices.
         mask : np.ndarray
-            Mask for removing elements without signals.
+            Zero tol mask.
         votes : dict
             Votes so far.
 

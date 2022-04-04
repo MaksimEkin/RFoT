@@ -5,10 +5,14 @@
 
 Welcome to RFoT's documentation!
 ================================
-Tensor decomposition is a powerful unsupervised ML method that enables the modeling of multi-dimensional data, including malware data. This paper introduces a novel ensemble semi-supervised classification algorithm, named Random Forest of Tensors (RFoT), that utilizes tensor decomposition to extract the complex and multi-faceted latent patterns from data. Our hybrid model leverages the strength of multi-dimensional analysis combined with clustering to capture the sample groupings in the latent components whose combinations distinguish malware and benign-ware. The patterns extracted from a given data with tensor decomposition depend on the configuration of the tensor such as dimension, entry, and rank selection. To capture the unique perspectives of different tensor configurations we employ the "wisdom of crowds" philosophy, and make use of decisions made by the majority of a randomly generated ensemble of tensors with varying dimensions, entries, and ranks. We show the capabilities of RFoT when classifying malware and benign-ware from the EMBER-2018 dataset.
+Tensor decomposition is a powerful unsupervised Machine Learning method that enables the modeling of multi-dimensional data, including malware data. We introduce a novel ensemble semi-supervised classification algorithm, named Random Forest of Tensors (RFoT), that utilizes tensor decomposition to extract the complex and multi-faceted latent patterns from data. Our hybrid model leverages the strength of multi-dimensional analysis combined with clustering to capture the sample groupings in the latent components, whose combinations distinguish malware and benign-ware. The patterns extracted from a given data with tensor decomposition depend upon the configuration of the tensor such as dimension, entry, and rank selection. To capture the unique perspectives of different tensor configurations, we employ the “wisdom of crowds” philosophy and make use of decisions made by the majority of a randomly generated ensemble of tensors with varying dimensions, entries, and ranks.
+
+As the tensor decomposition backend, RFoT offers two CPD algorithms. First, RFoT package includes the Python implementation of **CP-ALS** algorithm that was originally introduced in the `MATLAB Tensor Toolbox <https://www.tensortoolbox.org/cp.html>`_  :cite:p:`TTB_Software,Bader2006,Bader2008,Eren2022pyCP_ALS`. CP-ALS backend can also be used to **decompose each random tensor in a parallel manner**. RFoT can also be used with the Python implentation of the **CP-APR** algorithm with the **GPU capability** :cite:p:`10.1145/3519602`. Use of CP-APR backend allows decomposing each random tensor configuration both in an **embarrassingly parallel fashion in a single GPU**, and in a **multi-GPU parallel execution**.
+
 
 Resources
 ========================================
+* `RFoT API Documentation <#>`_
 * `Example Notebooks <https://github.com/MaksimEkin/RFoT/tree/main/examples>`_
 * `Poster <https://www.maksimeren.com/poster/Random_Forest_of_Tensors_RFoT_MTEM.pdf>`_
 * `Example Usage <https://github.com/MaksimEkin/RFoT/tree/main/examples>`_
@@ -88,6 +92,16 @@ Example Usage
 
 `See the examples for more. <https://github.com/MaksimEkin/RFoT/tree/main/examples>`_
 
+Acknowledgments
+========================================
+This work was done as part of Maksim E. Eren's Master's Thesis at the University of Maryland, Baltimore County with the thesis committee members and collaborators Charles Nicholas, Edward Raff, Roberto Yus, Boian S. Alexandrov, and Juston S. Moore.
+
+Developer Test Suite
+========================================
+Developer test suites are located under ``tests/`` directory (located `here <https://github.com/MaksimEkin/RFoT/tree/main/tests>`_).
+
+Tests can be ran from this folder using ``python -m unittest *``.
+
 References
 ========================================
 
@@ -98,9 +112,10 @@ References
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-
+   
+   RFoT_API
    RFoT
-   modules
+   
 
 
 Indices and tables
