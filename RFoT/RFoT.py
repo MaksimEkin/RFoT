@@ -126,11 +126,11 @@ class RFoT:
             
         clustering : string, optional
             Clustering method to be used for capturing the patterns from the latent factors. The default is "ms".\n
-            Options are: **"ms"**, **"component"**, and **"gmm"**.
+            Options are: **"ms"** (Mean Shift), **"component"**, and **"gmm"** (Gaussian Mixture Model).
             
         decomp : string, optional
             Tensor decomposition backend/algorithm to be used. The default is "cp_als".\n
-            Options are: **"cp_als"**, **"cp_apr"**, **"cp_apr_gpu"** and **"debug"**.
+            Options are: **"cp_als"** (Alternating least squares for CANDECOMP/PARAFAC Decomposition), **"cp_apr"** (CANDECOMP/PARAFAC Alternating Poisson Regression), **"cp_apr_gpu"** (CP-APR with GPU) and **"debug"**.
             
             .. note::
                 * GPU is used when ``decomp="cp_apr_gpu"``.

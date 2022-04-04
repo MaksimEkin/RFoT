@@ -31,6 +31,16 @@ pip install git+https://github.com/MaksimEkin/RFoT.git
 ```
 
 ## Example Usage
+In below example, we use a small sample from [EMBER-2018](https://github.com/elastic/ember) dataset to classify malware and benign-ware:
+- Random tensors in the ensemble are decomposed in a multi-GPU parallel fashion using 2 GPUs. (```n_jobs=2```, ```n_gpus=2```).
+- 200 tensor configurations are randomly sampled (```n_estimators=200```).
+- A tensor's dimension in the ensemble could be between 3 and 8 (```min_dimensions=3```, ```max_dimensions=8```). 
+- Rank is between 2 and 10. (```rank="random"```, ```min_rank=2```, ```max_rank=10```).
+- Cluster uniformity threshold of 1.0 is used (```cluster_purity_tol=1.0```).
+- Patterns are captured with Mean Shift (MS) clustering (```clustering="ms"```).
+- Feature values representing the tensor dimension are not binned (```bin_entry=False```).
+- Maximum tensor dimension size representing any feature is equals to the total number of unique values for that feature, where the values are mapped to an index in the tensor dimension (```bin_scale=1```).
+
 ```python
 import pickle
 import numpy as np
@@ -44,16 +54,22 @@ y_experiment = data["y_experiment"]
 y_true = data["y_true"]
 
 # Predict the unknown sample labels
+# Do multi-GPU parallel computation
+# CP-ALS Tensor Decomposition backend with Mean Shift Clustering
 model = RFoT(
-        bin_scale=1,
-        min_dimensions=3,
-        max_dimensions=8,
-        component_purity_tol=1.0,
-        rank=2,
-        n_estimators=200,
-        bin_entry=False,
-        clustering="ms",
-        n_jobs=50,
+    bin_scale=1,
+    min_dimensions=3,
+    max_dimensions=8,
+    cluster_purity_tol=1.0,
+    rank="random",
+    min_rank=2,
+    max_rank=10,
+    n_estimators=200,
+    bin_entry=False,
+    decomp="cp_als",
+    clustering="ms",
+    n_jobs=2,
+    n_gpus=2
 )
 y_pred = model.predict(X, y_experiment)
 
@@ -97,9 +113,6 @@ If you use RFoT, please cite it.
 ## Acknowledgments
 
 This work was done as part of Maksim E. Eren's Master's Thesis at the University of Maryland, Baltimore County with the thesis committee members and collaborators Charles Nicholas, Edward Raff, Roberto Yus, Boian S. Alexandrov, and Juston S. Moore.
-
-## Developer Test Suite
-Developer test suites are located under [```tests/```](tests/) directory. Tests can be ran from this folder using ```python -m unittest *```.
 
 ## References
 [1] Eren, M.E., Moore, J.S., Skau, E.W., Bhattarai, M., Moore, E.A, and Alexandrov, B.. 2022. General-Purpose Unsupervised Cyber Anomaly Detection via Non-Negative Tensor Factorization. Digital Threats: Research and Practice, 28 pages. DOI: https://doi.org/10.1145/3519602

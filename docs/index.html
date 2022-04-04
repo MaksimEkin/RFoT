@@ -277,11 +277,6 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#developer-test-suite">
-   Developer Test Suite
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references">
    References
   </a>
@@ -341,11 +336,6 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#developer-test-suite">
-   Developer Test Suite
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references">
    References
   </a>
@@ -390,40 +380,45 @@ pip install git+https://github.com/MaksimEkin/RFoT.git
 </section>
 <section id="id3">
 <h1>Example Usage<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h1>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<p>In below example, we use a small sample from <a class="reference external" href="https://github.com/elastic/ember">EMBER-2018</a> dataset to classify malware and benign-ware:</p>
+<ul class="simple">
+<li><p>Random tensors in the ensemble are decomposed in a multi-GPU parallel fashion using 2 GPUs. (<code class="docutils literal notranslate"><span class="pre">n_jobs=2`</span></code>, <code class="docutils literal notranslate"><span class="pre">n_gpus=2</span></code>).</p></li>
+<li><p>200 tensor configurations are randomly sampled (<code class="docutils literal notranslate"><span class="pre">n_estimators=200</span></code>).</p></li>
+<li><p>A tensor's dimension in the ensemble could be between 3 and 8 (<code class="docutils literal notranslate"><span class="pre">min_dimensions=3</span></code>, <code class="docutils literal notranslate"><span class="pre">max_dimensions=8</span></code>).</p></li>
+<li><p>Rank is between 2 and 10. (<code class="docutils literal notranslate"><span class="pre">rank=&quot;random&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">min_rank=2</span></code>, <code class="docutils literal notranslate"><span class="pre">max_rank=10</span></code>).</p></li>
+<li><p>Cluster uniformity threshold of 1.0 is used (<code class="docutils literal notranslate"><span class="pre">cluster_purity_tol=1.0</span></code>).</p></li>
+<li><p>Patterns are captured with Mean Shift (MS) clustering (<code class="docutils literal notranslate"><span class="pre">clustering=&quot;ms&quot;</span></code>).</p></li>
+<li><p>Feature values representing the tensor dimension are not binned (<code class="docutils literal notranslate"><span class="pre">bin_entry=False</span></code>).</p></li>
+<li><p>Maximum tensor dimension size representing any feature is equals to the total number of unique values for that feature, where the values are mapped to an index in the tensor dimension (<code class="docutils literal notranslate"><span class="pre">bin_scale=1</span></code>).</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">f1_score</span>
 <span class="kn">from</span> <span class="nn">RFoT</span> <span class="kn">import</span> <span class="n">RFoT</span>
 
-<span class="c1"># Load/pre-process the dataset</span>
-<span class="c1"># Use a small version of EMBER-2018 dataset</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s2">&quot;data/mini_ember_df.p&quot;</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">zscore</span><span class="p">(</span><span class="n">df</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
-
-<span class="c1"># organize the dataset</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">y_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
-<span class="n">y_experiment</span> <span class="o">=</span> <span class="n">y_true</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-
-<span class="c1"># randomly label some as unknown (-1)</span>
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">random_unlabeled_points</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">y_experiment</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mf">0.3</span>
-<span class="n">y_experiment</span><span class="p">[</span><span class="n">random_unlabeled_points</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="c1"># load the exmple data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/example.p&quot;</span><span class="p">))</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;X&quot;</span><span class="p">]</span>
+<span class="n">y_experiment</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;y_experiment&quot;</span><span class="p">]</span>
+<span class="n">y_true</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;y_true&quot;</span><span class="p">]</span>
 
 <span class="c1"># Predict the unknown sample labels</span>
+<span class="c1"># Do multi-GPU parallel computation</span>
+<span class="c1"># CP-ALS Tensor Decomposition backend with Mean Shift Clustering</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">RFoT</span><span class="p">(</span>
-        <span class="n">bin_scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-        <span class="n">min_dimensions</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-        <span class="n">max_dimensions</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
-        <span class="n">component_purity_tol</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
-        <span class="n">rank</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-        <span class="n">n_estimators</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
-        <span class="n">bin_entry</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">clustering</span><span class="o">=</span><span class="s2">&quot;ms&quot;</span><span class="p">,</span>
-        <span class="n">n_jobs</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">bin_scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">min_dimensions</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">max_dimensions</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="n">cluster_purity_tol</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">rank</span><span class="o">=</span><span class="s2">&quot;random&quot;</span><span class="p">,</span>
+    <span class="n">min_rank</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">max_rank</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">bin_entry</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">decomp</span><span class="o">=</span><span class="s2">&quot;cp_als&quot;</span><span class="p">,</span>
+    <span class="n">clustering</span><span class="o">=</span><span class="s2">&quot;ms&quot;</span><span class="p">,</span>
+    <span class="n">n_jobs</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">n_gpus</span><span class="o">=</span><span class="mi">2</span>
 <span class="p">)</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_experiment</span><span class="p">)</span>
 
@@ -436,7 +431,10 @@ pip install git+https://github.com/MaksimEkin/RFoT.git
     <span class="n">y_pred</span><span class="p">[</span><span class="n">unknown_indices</span><span class="p">][</span><span class="n">did_predict_indices</span><span class="p">],</span>
     <span class="n">average</span><span class="o">=</span><span class="s2">&quot;weighted&quot;</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">f1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Num. of Abstaining&quot;</span><span class="p">,</span> <span class="n">abstaining_count</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Percent Abstaining&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">abstaining_count</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">unknown_indices</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;F1=&quot;</span><span class="p">,</span> <span class="n">f1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><a class="reference external" href="https://github.com/MaksimEkin/RFoT/tree/main/examples">See the examples for more.</a></p>
@@ -464,11 +462,6 @@ pip install git+https://github.com/MaksimEkin/RFoT.git
 <section id="acknowledgments">
 <h1>Acknowledgments<a class="headerlink" href="#acknowledgments" title="Permalink to this headline">#</a></h1>
 <p>This work was done as part of Maksim E. Eren's Master's Thesis at the University of Maryland, Baltimore County with the thesis committee members and collaborators Charles Nicholas, Edward Raff, Roberto Yus, Boian S. Alexandrov, and Juston S. Moore.</p>
-</section>
-<section id="developer-test-suite">
-<h1>Developer Test Suite<a class="headerlink" href="#developer-test-suite" title="Permalink to this headline">#</a></h1>
-<p>Developer test suites are located under <code class="docutils literal notranslate"><span class="pre">tests/</span></code> directory (located <a class="reference external" href="https://github.com/MaksimEkin/RFoT/tree/main/tests">here</a>).</p>
-<p>Tests can be ran from this folder using <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">unittest</span> <span class="pre">*</span></code>.</p>
 </section>
 <section id="references">
 <h1>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h1>
