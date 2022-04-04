@@ -33,6 +33,7 @@ pip install git+https://github.com/MaksimEkin/RFoT.git
 ## Example Usage
 In below example, we use a small sample from [EMBER-2018](https://github.com/elastic/ember) dataset to classify malware and benign-ware:
 - Random tensors in the ensemble are decomposed in a multi-GPU parallel fashion using 2 GPUs. (```n_jobs=2```, ```n_gpus=2```).
+- Use CP-APR tensor decomposition backend with GPU (```decomp="cp_apr_gpu"```).
 - 200 tensor configurations are randomly sampled (```n_estimators=200```).
 - A tensor's dimension in the ensemble could be between 3 and 8 (```min_dimensions=3```, ```max_dimensions=8```). 
 - Rank is between 2 and 10. (```rank="random"```, ```min_rank=2```, ```max_rank=10```).
@@ -54,8 +55,6 @@ y_experiment = data["y_experiment"]
 y_true = data["y_true"]
 
 # Predict the unknown sample labels
-# Do multi-GPU parallel computation
-# CP-ALS Tensor Decomposition backend with Mean Shift Clustering
 model = RFoT(
     bin_scale=1,
     min_dimensions=3,
@@ -66,7 +65,7 @@ model = RFoT(
     max_rank=10,
     n_estimators=200,
     bin_entry=False,
-    decomp="cp_als",
+    decomp="cp_apr_gpu",
     clustering="ms",
     n_jobs=2,
     n_gpus=2

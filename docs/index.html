@@ -382,7 +382,12 @@ pip install git+https://github.com/MaksimEkin/RFoT.git
 <h1>Example Usage<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h1>
 <p>In below example, we use a small sample from <a class="reference external" href="https://github.com/elastic/ember">EMBER-2018</a> dataset to classify malware and benign-ware:</p>
 <ul class="simple">
-<li><p>Random tensors in the ensemble are decomposed in a multi-GPU parallel fashion using 2 GPUs. (<code class="docutils literal notranslate"><span class="pre">n_jobs=2`</span></code>, <code class="docutils literal notranslate"><span class="pre">n_gpus=2</span></code>).</p></li>
+<li><p>Random tensors in the ensemble are decomposed in a multi-GPU parallel fashion using 2 GPUs. (<code class="docutils literal notranslate"><span class="pre">n_jobs=2</span></code>, <code class="docutils literal notranslate"><span class="pre">n_gpus=2</span></code>).</p></li>
+</ul>
+<ul class="simple">
+<li><p>Use CP-APR tensor decomposition backend with GPU (<code class="docutils literal notranslate"><span class="pre">decomp=&quot;cp_apr_gpu&quot;</span></code>).</p></li>
+</ul>
+<ul class="simple">
 <li><p>200 tensor configurations are randomly sampled (<code class="docutils literal notranslate"><span class="pre">n_estimators=200</span></code>).</p></li>
 <li><p>A tensor's dimension in the ensemble could be between 3 and 8 (<code class="docutils literal notranslate"><span class="pre">min_dimensions=3</span></code>, <code class="docutils literal notranslate"><span class="pre">max_dimensions=8</span></code>).</p></li>
 <li><p>Rank is between 2 and 10. (<code class="docutils literal notranslate"><span class="pre">rank=&quot;random&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">min_rank=2</span></code>, <code class="docutils literal notranslate"><span class="pre">max_rank=10</span></code>).</p></li>
@@ -403,8 +408,6 @@ pip install git+https://github.com/MaksimEkin/RFoT.git
 <span class="n">y_true</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;y_true&quot;</span><span class="p">]</span>
 
 <span class="c1"># Predict the unknown sample labels</span>
-<span class="c1"># Do multi-GPU parallel computation</span>
-<span class="c1"># CP-ALS Tensor Decomposition backend with Mean Shift Clustering</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">RFoT</span><span class="p">(</span>
     <span class="n">bin_scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">min_dimensions</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
@@ -415,7 +418,7 @@ pip install git+https://github.com/MaksimEkin/RFoT.git
     <span class="n">max_rank</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
     <span class="n">n_estimators</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
     <span class="n">bin_entry</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">decomp</span><span class="o">=</span><span class="s2">&quot;cp_als&quot;</span><span class="p">,</span>
+    <span class="n">decomp</span><span class="o">=</span><span class="s2">&quot;cp_apr_gpu&quot;</span><span class="p">,</span>
     <span class="n">clustering</span><span class="o">=</span><span class="s2">&quot;ms&quot;</span><span class="p">,</span>
     <span class="n">n_jobs</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">n_gpus</span><span class="o">=</span><span class="mi">2</span>
