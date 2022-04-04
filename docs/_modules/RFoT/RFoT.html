@@ -329,11 +329,11 @@ title="Fullscreen mode"
 <span class="sd">            </span>
 <span class="sd">        clustering : string, optional</span>
 <span class="sd">            Clustering method to be used for capturing the patterns from the latent factors. The default is &quot;ms&quot;.\n</span>
-<span class="sd">            Options are: **&quot;ms&quot;**, **&quot;component&quot;**, and **&quot;gmm&quot;**.</span>
+<span class="sd">            Options are: **&quot;ms&quot;** (Mean Shift), **&quot;component&quot;**, and **&quot;gmm&quot;** (Gaussian Mixture Model).</span>
 <span class="sd">            </span>
 <span class="sd">        decomp : string, optional</span>
 <span class="sd">            Tensor decomposition backend/algorithm to be used. The default is &quot;cp_als&quot;.\n</span>
-<span class="sd">            Options are: **&quot;cp_als&quot;**, **&quot;cp_apr&quot;**, **&quot;cp_apr_gpu&quot;** and **&quot;debug&quot;**.</span>
+<span class="sd">            Options are: **&quot;cp_als&quot;** (Alternating least squares for CANDECOMP/PARAFAC Decomposition), **&quot;cp_apr&quot;** (CANDECOMP/PARAFAC Alternating Poisson Regression), **&quot;cp_apr_gpu&quot;** (CP-APR with GPU) and **&quot;debug&quot;**.</span>
 <span class="sd">            </span>
 <span class="sd">            .. note::</span>
 <span class="sd">                * GPU is used when ``decomp=&quot;cp_apr_gpu&quot;``.</span>

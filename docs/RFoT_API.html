@@ -405,10 +405,10 @@ This threshold is calculated based on the known instances in the cluster.</p>
 <p>All the tensors in the ensemble can also be decomposed with same rank (example: <code class="docutils literal notranslate"><span class="pre">rank=2</span></code>).</p>
 </dd>
 <dt>clustering<span class="classifier">string, optional</span></dt><dd><p>Clustering method to be used for capturing the patterns from the latent factors. The default is &quot;ms&quot;.</p>
-<p>Options are: <strong>&quot;ms&quot;</strong>, <strong>&quot;component&quot;</strong>, and <strong>&quot;gmm&quot;</strong>.</p>
+<p>Options are: <strong>&quot;ms&quot;</strong> (Mean Shift), <strong>&quot;component&quot;</strong>, and <strong>&quot;gmm&quot;</strong> (Gaussian Mixture Model).</p>
 </dd>
 <dt>decomp<span class="classifier">string, optional</span></dt><dd><p>Tensor decomposition backend/algorithm to be used. The default is &quot;cp_als&quot;.</p>
-<p>Options are: <strong>&quot;cp_als&quot;</strong>, <strong>&quot;cp_apr&quot;</strong>, <strong>&quot;cp_apr_gpu&quot;</strong> and <strong>&quot;debug&quot;</strong>.</p>
+<p>Options are: <strong>&quot;cp_als&quot;</strong> (Alternating least squares for CANDECOMP/PARAFAC Decomposition), <strong>&quot;cp_apr&quot;</strong> (CANDECOMP/PARAFAC Alternating Poisson Regression), <strong>&quot;cp_apr_gpu&quot;</strong> (CP-APR with GPU) and <strong>&quot;debug&quot;</strong>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <ul class="simple">

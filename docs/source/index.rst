@@ -39,7 +39,7 @@ In below example, we use a small sample from `EMBER-2018 <https://github.com/ela
 * Rank is between 2 and 10. (``rank="random"``, ``min_rank=2``, ``max_rank=10``).
 * Cluster uniformity threshold of 1.0 is used (``cluster_purity_tol=1.0``).
 * Patterns are captured with Mean Shift (MS) clustering (``clustering="ms"``).
-* Feature values representing the tensor dimension are not binned (``bin_entry=False``).
+* Feature values representing the tensor entry are not binned (``bin_entry=False``).
 * Maximum tensor dimension size representing any feature is equals to the total number of unique values for that feature, where the values are mapped to an index in the tensor dimension (``bin_scale=1``).
 
 
