@@ -17,7 +17,7 @@ As the tensor decomposition backend, RFoT offers two CPD algorithms. First, RFoT
 
 <div align="center", style="font-size: 50px">
 
-### [:information_source: Documentation](#) &emsp; [:orange_book: Example Notebooks](examples/) &emsp; [:bar_chart: Datasets](data/) &emsp; [:page_facing_up: Abstract](https://www.maksimeren.com/abstract/Random_Forest_of_Tensors_RFoT_MTEM.pdf)  &emsp; [:scroll: Poster](https://www.maksimeren.com/poster/Random_Forest_of_Tensors_RFoT_MTEM.pdf)
+### [:information_source: Documentation](https://maksimekin.github.io/RFoT/index.html) &emsp; [:orange_book: Example Notebooks](examples/) &emsp; [:bar_chart: Datasets](data/) &emsp; [:page_facing_up: Abstract](https://www.maksimeren.com/abstract/Random_Forest_of_Tensors_RFoT_MTEM.pdf)  &emsp; [:scroll: Poster](https://www.maksimeren.com/poster/Random_Forest_of_Tensors_RFoT_MTEM.pdf)
 
 </div>
 

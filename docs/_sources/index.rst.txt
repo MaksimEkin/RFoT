@@ -12,7 +12,7 @@ As the tensor decomposition backend, RFoT offers two CPD algorithms. First, RFoT
 
 Resources
 ========================================
-* `RFoT API Documentation <#>`_
+* `RFoT API Documentation <https://maksimekin.github.io/RFoT/RFoT_API.html>`_
 * `Example Notebooks <https://github.com/MaksimEkin/RFoT/tree/main/examples>`_
 * `Poster <https://www.maksimeren.com/poster/Random_Forest_of_Tensors_RFoT_MTEM.pdf>`_
 * `Example Usage <https://github.com/MaksimEkin/RFoT/tree/main/examples>`_
@@ -20,23 +20,14 @@ Resources
 
 Installation
 ========================================
-**Option 1: Install using pip**
 
 .. code-block:: shell
 
+    conda create --name RFoT python=3.8.5
+    conda activate RFoT
     pip install git+https://github.com/MaksimEkin/RFoT.git
 
-**Option 2: Install from source**
 
-.. code-block:: shell
-
-    git clone https://github.com/MaksimEkin/RFoT.git
-    cd RFoT
-    conda create --name RFoT python=3.8.5
-    source activate RFoT
-    pip install git+https://github.com/lanl/pyCP_APR.git
-    python setup.py install
-    
 Example Usage
 ========================================
 
@@ -91,6 +82,28 @@ Example Usage
     print(f1)
 
 `See the examples for more. <https://github.com/MaksimEkin/RFoT/tree/main/examples>`_
+
+How to Cite RFoT?
+========================================
+.. code-block:: console
+    
+    @MISC{Eren2022RFoT,
+      author = {M. E. {Eren} and C. {Nicholas} and E. {Raff} and R. {Yus} and J. S. {Moore} and B. S. {Alexandrov}},
+      title = {RFoT},
+      year = {2022},
+      publisher = {GitHub},
+      journal = {GitHub repository},
+      howpublished = {\url{https://github.com/MaksimEkin/RFoT}}
+    }
+
+    @MISC{eren2021RFoT,
+          title={Random Forest of Tensors (RFoT)}, 
+          author={M. E. {Eren} and C. {Nicholas} and R. {McDonald} and C. {Hamer}},
+          year={2021},
+          note={Presented at the 12th Annual Malware Technical Exchange Meeting, Online, 2021}
+    }
+
+
 
 Acknowledgments
 ========================================

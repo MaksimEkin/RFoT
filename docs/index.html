@@ -267,6 +267,11 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-cite-rfot">
+   How to Cite RFoT?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#acknowledgments">
    Acknowledgments
   </a>
@@ -326,6 +331,11 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-cite-rfot">
+   How to Cite RFoT?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#acknowledgments">
    Acknowledgments
   </a>
@@ -363,7 +373,7 @@ title="Print to PDF"
 <section id="resources">
 <h1>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">#</a></h1>
 <ul class="simple">
-<li><p><a class="reference external" href="#">RFoT API Documentation</a></p></li>
+<li><p><a class="reference external" href="https://maksimekin.github.io/RFoT/RFoT_API.html">RFoT API Documentation</a></p></li>
 <li><p><a class="reference external" href="https://github.com/MaksimEkin/RFoT/tree/main/examples">Example Notebooks</a></p></li>
 <li><p><a class="reference external" href="https://www.maksimeren.com/poster/Random_Forest_of_Tensors_RFoT_MTEM.pdf">Poster</a></p></li>
 <li><p><a class="reference external" href="https://github.com/MaksimEkin/RFoT/tree/main/examples">Example Usage</a></p></li>
@@ -372,17 +382,9 @@ title="Print to PDF"
 </section>
 <section id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">#</a></h1>
-<p><strong>Option 1: Install using pip</strong></p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install git+https://github.com/MaksimEkin/RFoT.git
-</pre></div>
-</div>
-<p><strong>Option 2: Install from source</strong></p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/MaksimEkin/RFoT.git
-<span class="nb">cd</span> RFoT
-conda create --name RFoT <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.8.5
-<span class="nb">source</span> activate RFoT
-pip install git+https://github.com/lanl/pyCP_APR.git
-python setup.py install
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda create --name RFoT <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.8.5
+conda activate RFoT
+pip install git+https://github.com/MaksimEkin/RFoT.git
 </pre></div>
 </div>
 </section>
@@ -438,6 +440,26 @@ python setup.py install
 </pre></div>
 </div>
 <p><a class="reference external" href="https://github.com/MaksimEkin/RFoT/tree/main/examples">See the examples for more.</a></p>
+</section>
+<section id="how-to-cite-rfot">
+<h1>How to Cite RFoT?<a class="headerlink" href="#how-to-cite-rfot" title="Permalink to this headline">#</a></h1>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">@MISC{Eren2022RFoT,</span>
+<span class="go">  author = {M. E. {Eren} and C. {Nicholas} and E. {Raff} and R. {Yus} and J. S. {Moore} and B. S. {Alexandrov}},</span>
+<span class="go">  title = {RFoT},</span>
+<span class="go">  year = {2022},</span>
+<span class="go">  publisher = {GitHub},</span>
+<span class="go">  journal = {GitHub repository},</span>
+<span class="go">  howpublished = {\url{https://github.com/MaksimEkin/RFoT}}</span>
+<span class="go">}</span>
+
+<span class="go">@MISC{eren2021RFoT,</span>
+<span class="go">      title={Random Forest of Tensors (RFoT)},</span>
+<span class="go">      author={M. E. {Eren} and C. {Nicholas} and R. {McDonald} and C. {Hamer}},</span>
+<span class="go">      year={2021},</span>
+<span class="go">      note={Presented at the 12th Annual Malware Technical Exchange Meeting, Online, 2021}</span>
+<span class="go">}</span>
+</pre></div>
+</div>
 </section>
 <section id="acknowledgments">
 <h1>Acknowledgments<a class="headerlink" href="#acknowledgments" title="Permalink to this headline">#</a></h1>
