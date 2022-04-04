@@ -61,6 +61,8 @@ class RFoT:
 
         Parameters
         ----------
+        
+        
         max_depth : int, optional
             Maximum number of times to run RFoT. The default is 1.
             
@@ -130,8 +132,8 @@ class RFoT:
             .. admonition:: Options
             
                 * ``clustering="ms"`` (Mean Shift)
-                * ``clustering="component"``, 
-                * ``clustering="gmm"`` (Gaussian Mixture Model).
+                * ``clustering="component"``
+                * ``clustering="gmm"`` (Gaussian Mixture Model)
             
             
         decomp : string, optional
@@ -139,7 +141,8 @@ class RFoT:
             
             .. admonition:: Options
             
-                * ``decomp="cp_als"`` (Alternating least squares for CANDECOMP/PARAFAC Decomposition), * ``decomp="cp_apr"`` (CANDECOMP/PARAFAC Alternating Poisson Regression) 
+                * ``decomp="cp_als"`` (Alternating least squares for CANDECOMP/PARAFAC Decomposition)
+                * ``decomp="cp_apr"`` (CANDECOMP/PARAFAC Alternating Poisson Regression) 
                 * ``decomp="cp_apr_gpu"`` (CP-APR with GPU)
                 * ``decomp="debug"``
             
@@ -293,7 +296,7 @@ class RFoT:
 
         .. important::
             * Use -1 for the unknown samples.
-            * In returned ``y_pred``, samples with -1 predictions are said to be abstaining predictions (i.e. model says "we do not know that the label for that sample is").
+            * In returned ``y_pred``, samples with -1 predictions are said to be **abstaining predictions** (i.e. model says **"we do not know that the label for that sample is"**).
             * Returned ``y_pred`` includes both known and unknown samples, where the labels of unknown samples may have changed from the original ``y``.
 
         .. admonition:: Example Usage

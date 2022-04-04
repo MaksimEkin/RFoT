@@ -447,8 +447,8 @@ This threshold is calculated based on the known instances in the cluster.</p>
 <p class="admonition-title">Options</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">clustering=&quot;ms&quot;</span></code> (Mean Shift)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">clustering=&quot;component&quot;</span></code>,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">clustering=&quot;gmm&quot;</span></code> (Gaussian Mixture Model).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clustering=&quot;component&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clustering=&quot;gmm&quot;</span></code> (Gaussian Mixture Model)</p></li>
 </ul>
 </div>
 </dd>
@@ -456,7 +456,8 @@ This threshold is calculated based on the known instances in the cluster.</p>
 <div class="admonition-options admonition">
 <p class="admonition-title">Options</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">decomp=&quot;cp_als&quot;</span></code> (Alternating least squares for CANDECOMP/PARAFAC Decomposition), * <code class="docutils literal notranslate"><span class="pre">decomp=&quot;cp_apr&quot;</span></code> (CANDECOMP/PARAFAC Alternating Poisson Regression)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decomp=&quot;cp_als&quot;</span></code> (Alternating least squares for CANDECOMP/PARAFAC Decomposition)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decomp=&quot;cp_apr&quot;</span></code> (CANDECOMP/PARAFAC Alternating Poisson Regression)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">decomp=&quot;cp_apr_gpu&quot;</span></code> (CP-APR with GPU)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">decomp=&quot;debug&quot;</span></code></p></li>
 </ul>
@@ -551,7 +552,7 @@ This threshold is calculated based on the known instances in the cluster.</p>
 <p class="admonition-title">Important</p>
 <ul class="simple">
 <li><p>Use -1 for the unknown samples.</p></li>
-<li><p>In returned <code class="docutils literal notranslate"><span class="pre">y_pred</span></code>, samples with -1 predictions are said to be abstaining predictions (i.e. model says &quot;we do not know that the label for that sample is&quot;).</p></li>
+<li><p>In returned <code class="docutils literal notranslate"><span class="pre">y_pred</span></code>, samples with -1 predictions are said to be <strong>abstaining predictions</strong> (i.e. model says <strong>&quot;we do not know that the label for that sample is&quot;</strong>).</p></li>
 <li><p>Returned <code class="docutils literal notranslate"><span class="pre">y_pred</span></code> includes both known and unknown samples, where the labels of unknown samples may have changed from the original <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p></li>
 </ul>
 </div>

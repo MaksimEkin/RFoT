@@ -264,6 +264,8 @@ title="Fullscreen mode"
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
 <span class="sd">        max_depth : int, optional</span>
 <span class="sd">            Maximum number of times to run RFoT. The default is 1.</span>
 <span class="sd">            </span>
@@ -333,8 +335,8 @@ title="Fullscreen mode"
 <span class="sd">            .. admonition:: Options</span>
 <span class="sd">            </span>
 <span class="sd">                * ``clustering=&quot;ms&quot;`` (Mean Shift)</span>
-<span class="sd">                * ``clustering=&quot;component&quot;``, </span>
-<span class="sd">                * ``clustering=&quot;gmm&quot;`` (Gaussian Mixture Model).</span>
+<span class="sd">                * ``clustering=&quot;component&quot;``</span>
+<span class="sd">                * ``clustering=&quot;gmm&quot;`` (Gaussian Mixture Model)</span>
 <span class="sd">            </span>
 <span class="sd">            </span>
 <span class="sd">        decomp : string, optional</span>
@@ -342,7 +344,8 @@ title="Fullscreen mode"
 <span class="sd">            </span>
 <span class="sd">            .. admonition:: Options</span>
 <span class="sd">            </span>
-<span class="sd">                * ``decomp=&quot;cp_als&quot;`` (Alternating least squares for CANDECOMP/PARAFAC Decomposition), * ``decomp=&quot;cp_apr&quot;`` (CANDECOMP/PARAFAC Alternating Poisson Regression) </span>
+<span class="sd">                * ``decomp=&quot;cp_als&quot;`` (Alternating least squares for CANDECOMP/PARAFAC Decomposition)</span>
+<span class="sd">                * ``decomp=&quot;cp_apr&quot;`` (CANDECOMP/PARAFAC Alternating Poisson Regression) </span>
 <span class="sd">                * ``decomp=&quot;cp_apr_gpu&quot;`` (CP-APR with GPU)</span>
 <span class="sd">                * ``decomp=&quot;debug&quot;``</span>
 <span class="sd">            </span>
@@ -496,7 +499,7 @@ title="Fullscreen mode"
 
 <span class="sd">        .. important::</span>
 <span class="sd">            * Use -1 for the unknown samples.</span>
-<span class="sd">            * In returned ``y_pred``, samples with -1 predictions are said to be abstaining predictions (i.e. model says &quot;we do not know that the label for that sample is&quot;).</span>
+<span class="sd">            * In returned ``y_pred``, samples with -1 predictions are said to be **abstaining predictions** (i.e. model says **&quot;we do not know that the label for that sample is&quot;**).</span>
 <span class="sd">            * Returned ``y_pred`` includes both known and unknown samples, where the labels of unknown samples may have changed from the original ``y``.</span>
 
 <span class="sd">        .. admonition:: Example Usage</span>
