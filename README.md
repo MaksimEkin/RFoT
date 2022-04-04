@@ -95,7 +95,7 @@ If you use RFoT, please cite it.
 ```latex
 @MISC{Eren2022RFoT,
   author = {M. E. {Eren} and C. {Nicholas} and E. {Raff} and R. {Yus} and J. S. {Moore} and B. S. {Alexandrov}},
-  title = {RFoT},
+  title = {{RFoT}},
   year = {2022},
   publisher = {GitHub},
   journal = {GitHub repository},
