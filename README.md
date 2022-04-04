@@ -32,28 +32,16 @@ pip install git+https://github.com/MaksimEkin/RFoT.git
 
 ## Example Usage
 ```python
-import pandas as pd
+import pickle
 import numpy as np
-from scipy import stats
 from sklearn.metrics import f1_score
 from RFoT import RFoT
 
-# Load/pre-process the dataset
-# Use a small version of EMBER-2018 dataset
-df = pd.read_pickle("data/mini_ember_df.p")
-df.dropna(inplace=True)
-df = df[(np.abs(stats.zscore(df)) < 3).all(axis=1)]
-print(df.info())
-
-# organize the dataset
-X = df.drop("y", axis=1)
-y_true = np.array(df["y"].tolist())
-y_experiment = y_true.copy()
-
-# randomly label some as unknown (-1)
-rng = np.random.RandomState(42)
-random_unlabeled_points = rng.rand(y_experiment.shape[0]) < 0.3
-y_experiment[random_unlabeled_points] = -1
+# load the exmple data
+data = pickle.load(open("data/example.p"))
+X = data["X"]
+y_experiment = data["y_experiment"]
+y_true = data["y_true"]
 
 # Predict the unknown sample labels
 model = RFoT(
@@ -78,7 +66,10 @@ f1 = f1_score(
     y_pred[unknown_indices][did_predict_indices],
     average="weighted",
 )
-print(f1)
+
+print("Num. of Abstaining", abstaining_count)
+print("Percent Abstaining", (abstaining_count / len(unknown_indices)) * 100, "%")
+print("F1=", f1)
 ```
 **See the [examples](examples/) for more.**
 
