@@ -32,6 +32,7 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="RFoT.clustering package" href="RFoT.clustering.html" />
@@ -430,8 +431,8 @@ This threshold is calculated based on the known instances in the cluster.</p>
 </div>
 </dd>
 <dt>n_estimators<span class="classifier">int, optional</span></dt><dd><p>Number of random tensor configurations in the ensemble. The default is 80.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
 <ul class="simple">
 <li><p>Based on the hyper-parameter configurations, and the number of features in the dataset, it is possible to have less number of random tensor configurations than the one specified in <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code>.</p></li>
 </ul>
@@ -442,10 +443,24 @@ This threshold is calculated based on the known instances in the cluster.</p>
 <p>All the tensors in the ensemble can also be decomposed with same rank (example: <code class="docutils literal notranslate"><span class="pre">rank=2</span></code>).</p>
 </dd>
 <dt>clustering<span class="classifier">string, optional</span></dt><dd><p>Clustering method to be used for capturing the patterns from the latent factors. The default is &quot;ms&quot;.</p>
-<p>Options are: <strong>&quot;ms&quot;</strong> (Mean Shift), <strong>&quot;component&quot;</strong>, and <strong>&quot;gmm&quot;</strong> (Gaussian Mixture Model).</p>
+<div class="admonition-options admonition">
+<p class="admonition-title">Options</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">clustering=&quot;ms&quot;</span></code> (Mean Shift)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clustering=&quot;component&quot;</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clustering=&quot;gmm&quot;</span></code> (Gaussian Mixture Model).</p></li>
+</ul>
+</div>
 </dd>
 <dt>decomp<span class="classifier">string, optional</span></dt><dd><p>Tensor decomposition backend/algorithm to be used. The default is &quot;cp_als&quot;.</p>
-<p>Options are: <strong>&quot;cp_als&quot;</strong> (Alternating least squares for CANDECOMP/PARAFAC Decomposition), <strong>&quot;cp_apr&quot;</strong> (CANDECOMP/PARAFAC Alternating Poisson Regression), <strong>&quot;cp_apr_gpu&quot;</strong> (CP-APR with GPU) and <strong>&quot;debug&quot;</strong>.</p>
+<div class="admonition-options admonition">
+<p class="admonition-title">Options</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">decomp=&quot;cp_als&quot;</span></code> (Alternating least squares for CANDECOMP/PARAFAC Decomposition), * <code class="docutils literal notranslate"><span class="pre">decomp=&quot;cp_apr&quot;</span></code> (CANDECOMP/PARAFAC Alternating Poisson Regression)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decomp=&quot;cp_apr_gpu&quot;</span></code> (CP-APR with GPU)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decomp=&quot;debug&quot;</span></code></p></li>
+</ul>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <ul class="simple">
@@ -460,8 +475,8 @@ This threshold is calculated based on the known instances in the cluster.</p>
 </dd>
 <dt>bin_scale<span class="classifier">float, optional</span></dt><dd><p>When using a given column (feature) as a tensor dimension, the feature values are binned to create feature value to tensor dimension mapping. This allows a feature value to be represented by an index in the tensor dimension for that feature. The default is 1.0.</p>
 <p>When <code class="docutils literal notranslate"><span class="pre">bin_scale=1.0</span></code>, the size of the dimension that represents the given feature will be equal to the number of unique values in that column (feature).</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
 <ul class="simple">
 <li><p>See <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.cut.html">Pandas Cut</a> for value binning.</p></li>
 </ul>
@@ -469,8 +484,9 @@ This threshold is calculated based on the known instances in the cluster.</p>
 </dd>
 <dt>bin_entry<span class="classifier">bool, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">bin_entry=True</span></code>, the features that are used as tensor entry are also binned. The default is False.</p>
 </dd>
-<dt>bin_max_map<span class="classifier">dict, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">bin_scale``x``(number</span> <span class="pre">of</span> <span class="pre">unique</span> <span class="pre">features</span></code> is more than <code class="docutils literal notranslate"><span class="pre">bin_max_map[&quot;max&quot;]</span></code>, number of bins for features to map is manually selected from <a href="#id3"><span class="problematic" id="id4">``</span></a>bin_max_map[&quot;bin&quot;]`. The default is {&quot;max&quot;: 10 ** 6, &quot;bin&quot;: 10 ** 3}.</p>
-<p><code class="docutils literal notranslate"><span class="pre">bin_max_map</span></code> prevents any dimension of any of the tensors in the ensemble to be too large.</p>
+<dt>bin_max_map<span class="classifier">dict, optional</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">bin_max_map</span></code> prevents any dimension of any of the tensors in the ensemble to be too large. The default is <code class="docutils literal notranslate"><span class="pre">bin_max_map={&quot;max&quot;:</span> <span class="pre">10</span> <span class="pre">**</span> <span class="pre">6,</span> <span class="pre">&quot;bin&quot;:</span> <span class="pre">10</span> <span class="pre">**</span> <span class="pre">3}</span></code>.</p>
+<p>Specifically, <code class="docutils literal notranslate"><span class="pre">bin_max_map[&quot;bin&quot;]</span></code> is used to determine the size of the dimension when:</p>
+<p><span class="math notranslate nohighlight">\(bin\_scale \cdot |f_i| &gt; bin\_max\_map[&quot;max&quot;]\)</span></p>
 </dd>
 <dt>tol<span class="classifier">float, optional</span></dt><dd><p>CP-ALS hyper-parameter. The default is 1e-4.</p>
 </dd>
@@ -531,17 +547,16 @@ This threshold is calculated based on the known instances in the cluster.</p>
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/RFoT/RFoT.html#RFoT.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Semi-supervised prediction of the unknown samples (with labels -1) based on the known samples.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
 <ul class="simple">
 <li><p>Use -1 for the unknown samples.</p></li>
 <li><p>In returned <code class="docutils literal notranslate"><span class="pre">y_pred</span></code>, samples with -1 predictions are said to be abstaining predictions (i.e. model says &quot;we do not know that the label for that sample is&quot;).</p></li>
 <li><p>Returned <code class="docutils literal notranslate"><span class="pre">y_pred</span></code> includes both known and unknown samples, where the labels of unknown samples may have changed from the original <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p></li>
 </ul>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><strong>Example usage:</strong></p>
+<div class="admonition-example-usage admonition">
+<p class="admonition-title">Example Usage</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">RFoT</span> <span class="kn">import</span> <span class="n">RFoT</span>
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">f1_score</span>
@@ -592,9 +607,8 @@ This threshold is calculated based on the known instances in the cluster.</p>
 </pre></div>
 </div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><strong>Example getting scores:</strong></p>
+<div class="admonition-example-usage admonition">
+<p class="admonition-title">Example Usage</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># y is the vector of known and unknown labels passed to RFoT</span>
 <span class="c1"># y_pred is the prediction returned by RFoT</span>
 <span class="c1"># y_true is the ground truth</span>

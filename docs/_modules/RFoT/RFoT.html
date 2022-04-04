@@ -319,7 +319,7 @@ title="Fullscreen mode"
 <span class="sd">        n_estimators : int, optional</span>
 <span class="sd">            Number of random tensor configurations in the ensemble. The default is 80.</span>
 <span class="sd">            </span>
-<span class="sd">            .. warning::</span>
+<span class="sd">            .. caution::</span>
 <span class="sd">                * Based on the hyper-parameter configurations, and the number of features in the dataset, it is possible to have less number of random tensor configurations than the one specified in ``n_estimators``.</span>
 <span class="sd">            </span>
 <span class="sd">        rank : int or string, optional</span>
@@ -329,11 +329,22 @@ title="Fullscreen mode"
 <span class="sd">            </span>
 <span class="sd">        clustering : string, optional</span>
 <span class="sd">            Clustering method to be used for capturing the patterns from the latent factors. The default is &quot;ms&quot;.\n</span>
-<span class="sd">            Options are: **&quot;ms&quot;** (Mean Shift), **&quot;component&quot;**, and **&quot;gmm&quot;** (Gaussian Mixture Model).</span>
+<span class="sd">            </span>
+<span class="sd">            .. admonition:: Options</span>
+<span class="sd">            </span>
+<span class="sd">                * ``clustering=&quot;ms&quot;`` (Mean Shift)</span>
+<span class="sd">                * ``clustering=&quot;component&quot;``, </span>
+<span class="sd">                * ``clustering=&quot;gmm&quot;`` (Gaussian Mixture Model).</span>
+<span class="sd">            </span>
 <span class="sd">            </span>
 <span class="sd">        decomp : string, optional</span>
 <span class="sd">            Tensor decomposition backend/algorithm to be used. The default is &quot;cp_als&quot;.\n</span>
-<span class="sd">            Options are: **&quot;cp_als&quot;** (Alternating least squares for CANDECOMP/PARAFAC Decomposition), **&quot;cp_apr&quot;** (CANDECOMP/PARAFAC Alternating Poisson Regression), **&quot;cp_apr_gpu&quot;** (CP-APR with GPU) and **&quot;debug&quot;**.</span>
+<span class="sd">            </span>
+<span class="sd">            .. admonition:: Options</span>
+<span class="sd">            </span>
+<span class="sd">                * ``decomp=&quot;cp_als&quot;`` (Alternating least squares for CANDECOMP/PARAFAC Decomposition), * ``decomp=&quot;cp_apr&quot;`` (CANDECOMP/PARAFAC Alternating Poisson Regression) </span>
+<span class="sd">                * ``decomp=&quot;cp_apr_gpu&quot;`` (CP-APR with GPU)</span>
+<span class="sd">                * ``decomp=&quot;debug&quot;``</span>
 <span class="sd">            </span>
 <span class="sd">            .. note::</span>
 <span class="sd">                * GPU is used when ``decomp=&quot;cp_apr_gpu&quot;``.</span>
@@ -349,15 +360,18 @@ title="Fullscreen mode"
 <span class="sd">            When using a given column (feature) as a tensor dimension, the feature values are binned to create feature value to tensor dimension mapping. This allows a feature value to be represented by an index in the tensor dimension for that feature. The default is 1.0.\n</span>
 <span class="sd">            When ``bin_scale=1.0``, the size of the dimension that represents the given feature will be equal to the number of unique values in that column (feature).</span>
 <span class="sd">            </span>
-<span class="sd">            .. note::</span>
+<span class="sd">            .. seealso::</span>
 <span class="sd">                * See `Pandas Cut &lt;https://pandas.pydata.org/docs/reference/api/pandas.cut.html&gt;`_ for value binning.</span>
 <span class="sd">            </span>
 <span class="sd">        bin_entry : bool, optional</span>
 <span class="sd">            If ``bin_entry=True``, the features that are used as tensor entry are also binned. The default is False.</span>
 <span class="sd">            </span>
 <span class="sd">        bin_max_map : dict, optional</span>
-<span class="sd">            If ``bin_scale``x``(number of unique features`` is more than ``bin_max_map[&quot;max&quot;]``, number of bins for features to map is manually selected from ``bin_max_map[&quot;bin&quot;]`. The default is {&quot;max&quot;: 10 ** 6, &quot;bin&quot;: 10 ** 3}.\n</span>
-<span class="sd">            ``bin_max_map`` prevents any dimension of any of the tensors in the ensemble to be too large.</span>
+<span class="sd">            ``bin_max_map`` prevents any dimension of any of the tensors in the ensemble to be too large. The default is ``bin_max_map={&quot;max&quot;: 10 ** 6, &quot;bin&quot;: 10 ** 3}``. \n</span>
+<span class="sd">            Specifically, ``bin_max_map[&quot;bin&quot;]`` is used to determine the size of the dimension when:</span>
+<span class="sd">            </span>
+<span class="sd">            :math:`bin\_scale \cdot |f_i| &gt; bin\_max\_map[&quot;max&quot;]`</span>
+
 <span class="sd">            </span>
 <span class="sd">        tol : float, optional</span>
 <span class="sd">            CP-ALS hyper-parameter. The default is 1e-4.</span>
@@ -480,15 +494,13 @@ title="Fullscreen mode"
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Semi-supervised prediction of the unknown samples (with labels -1) based on the known samples.</span>
 
-<span class="sd">        .. warning::</span>
+<span class="sd">        .. important::</span>
 <span class="sd">            * Use -1 for the unknown samples.</span>
 <span class="sd">            * In returned ``y_pred``, samples with -1 predictions are said to be abstaining predictions (i.e. model says &quot;we do not know that the label for that sample is&quot;).</span>
 <span class="sd">            * Returned ``y_pred`` includes both known and unknown samples, where the labels of unknown samples may have changed from the original ``y``.</span>
 
-<span class="sd">        .. note::</span>
+<span class="sd">        .. admonition:: Example Usage</span>
 <span class="sd">        </span>
-<span class="sd">            **Example usage:**</span>
-
 <span class="sd">            .. code-block:: python</span>
 
 <span class="sd">                from RFoT import RFoT</span>
@@ -539,9 +551,7 @@ title="Fullscreen mode"
 <span class="sd">                print(&quot;Percent Abstaining&quot;, (abstaining_count / len(unknown_indices)) * 100, &quot;%&quot;)</span>
 <span class="sd">                print(&quot;F1=&quot;, f1)</span>
 
-<span class="sd">        .. note::</span>
-<span class="sd">        </span>
-<span class="sd">            **Example getting scores:**</span>
+<span class="sd">        .. admonition:: Example Usage</span>
 
 <span class="sd">            .. code-block:: python</span>
 

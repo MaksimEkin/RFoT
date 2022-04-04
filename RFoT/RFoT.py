@@ -116,7 +116,7 @@ class RFoT:
         n_estimators : int, optional
             Number of random tensor configurations in the ensemble. The default is 80.
             
-            .. warning::
+            .. caution::
                 * Based on the hyper-parameter configurations, and the number of features in the dataset, it is possible to have less number of random tensor configurations than the one specified in ``n_estimators``.
             
         rank : int or string, optional
@@ -126,11 +126,22 @@ class RFoT:
             
         clustering : string, optional
             Clustering method to be used for capturing the patterns from the latent factors. The default is "ms".\n
-            Options are: **"ms"** (Mean Shift), **"component"**, and **"gmm"** (Gaussian Mixture Model).
+            
+            .. admonition:: Options
+            
+                * ``clustering="ms"`` (Mean Shift)
+                * ``clustering="component"``, 
+                * ``clustering="gmm"`` (Gaussian Mixture Model).
+            
             
         decomp : string, optional
             Tensor decomposition backend/algorithm to be used. The default is "cp_als".\n
-            Options are: **"cp_als"** (Alternating least squares for CANDECOMP/PARAFAC Decomposition), **"cp_apr"** (CANDECOMP/PARAFAC Alternating Poisson Regression), **"cp_apr_gpu"** (CP-APR with GPU) and **"debug"**.
+            
+            .. admonition:: Options
+            
+                * ``decomp="cp_als"`` (Alternating least squares for CANDECOMP/PARAFAC Decomposition), * ``decomp="cp_apr"`` (CANDECOMP/PARAFAC Alternating Poisson Regression) 
+                * ``decomp="cp_apr_gpu"`` (CP-APR with GPU)
+                * ``decomp="debug"``
             
             .. note::
                 * GPU is used when ``decomp="cp_apr_gpu"``.
@@ -146,15 +157,18 @@ class RFoT:
             When using a given column (feature) as a tensor dimension, the feature values are binned to create feature value to tensor dimension mapping. This allows a feature value to be represented by an index in the tensor dimension for that feature. The default is 1.0.\n
             When ``bin_scale=1.0``, the size of the dimension that represents the given feature will be equal to the number of unique values in that column (feature).
             
-            .. note::
+            .. seealso::
                 * See `Pandas Cut <https://pandas.pydata.org/docs/reference/api/pandas.cut.html>`_ for value binning.
             
         bin_entry : bool, optional
             If ``bin_entry=True``, the features that are used as tensor entry are also binned. The default is False.
             
         bin_max_map : dict, optional
-            If ``bin_scale``x``(number of unique features`` is more than ``bin_max_map["max"]``, number of bins for features to map is manually selected from ``bin_max_map["bin"]`. The default is {"max": 10 ** 6, "bin": 10 ** 3}.\n
-            ``bin_max_map`` prevents any dimension of any of the tensors in the ensemble to be too large.
+            ``bin_max_map`` prevents any dimension of any of the tensors in the ensemble to be too large. The default is ``bin_max_map={"max": 10 ** 6, "bin": 10 ** 3}``. \n
+            Specifically, ``bin_max_map["bin"]`` is used to determine the size of the dimension when:
+            
+            :math:`bin\_scale \cdot |f_i| > bin\_max\_map["max"]`
+
             
         tol : float, optional
             CP-ALS hyper-parameter. The default is 1e-4.
@@ -277,15 +291,13 @@ class RFoT:
         """
         Semi-supervised prediction of the unknown samples (with labels -1) based on the known samples.
 
-        .. warning::
+        .. important::
             * Use -1 for the unknown samples.
             * In returned ``y_pred``, samples with -1 predictions are said to be abstaining predictions (i.e. model says "we do not know that the label for that sample is").
             * Returned ``y_pred`` includes both known and unknown samples, where the labels of unknown samples may have changed from the original ``y``.
 
-        .. note::
+        .. admonition:: Example Usage
         
-            **Example usage:**
-
             .. code-block:: python
 
                 from RFoT import RFoT
@@ -336,9 +348,7 @@ class RFoT:
                 print("Percent Abstaining", (abstaining_count / len(unknown_indices)) * 100, "%")
                 print("F1=", f1)
 
-        .. note::
-        
-            **Example getting scores:**
+        .. admonition:: Example Usage
 
             .. code-block:: python
 
